@@ -7,4 +7,9 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "home should have application title" do
+    get :home
+    assert_select "title", Rails.configuration.x.name
+  end
+
 end
