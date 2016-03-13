@@ -1,5 +1,9 @@
 @import "colors";
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: $white;
   color:            $black;

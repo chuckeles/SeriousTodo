@@ -1,0 +1,19 @@
+@import "colors";
+
+.page {
+  min-height: 100vh;
+  padding: 2em;
+
+  &.center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+  &.primary {
+    background-color: $primary;
+    color: $white;
+  }
+}
