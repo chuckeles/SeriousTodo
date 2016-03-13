@@ -1,2 +1,7 @@
 language: ruby
+services:
+  - postgresql
+
 bundler_args: --without production
+before_script:
+  - psql -c "CREATE DATABASE serious_todo_test;" -U postgres
