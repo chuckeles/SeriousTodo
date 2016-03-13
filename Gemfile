@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "rake"
   gem "minitest-reporters"
   gem "mini_backtrace"
 end

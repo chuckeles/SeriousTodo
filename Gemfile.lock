@@ -155,6 +155,7 @@ DEPENDENCIES
   pg
   rails
   rails_12factor
+  rake
   sass-rails
   spring
   turbolinks
