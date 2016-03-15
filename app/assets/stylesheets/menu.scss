@@ -1,0 +1,24 @@
+@import "colors";
+
+.menu-bar {
+  background-color: $primary;
+  margin:           -2em;
+  margin-bottom:    0;
+}
+
+.menu {
+  display:         flex;
+  list-style-type: none;
+  margin:          0;
+  padding:         0 1em;
+}
+
+.menu-item {
+  color:   $white;
+  display: block;
+  padding: 1em;
+}
+
+.menu-spacer {
+  flex-grow: 1;
+}

@@ -22,8 +22,9 @@ group :development, :test do
 end
 
 group :test do
-  gem "minitest-reporters"
-  gem "mini_backtrace"
+  gem "rake"
+  gem "rspec-rails"
+  gem "capybara"
 end
 
 group :production do

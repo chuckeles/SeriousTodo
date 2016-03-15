@@ -1,0 +1,5 @@
+rules:
+  no-css-comments: 0
+  quotes:
+    - 1
+    - style: double
