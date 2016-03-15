@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe StaticPagesController do
 
   describe "GET home" do
