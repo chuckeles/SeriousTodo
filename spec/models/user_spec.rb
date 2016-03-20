@@ -18,6 +18,15 @@ RSpec.describe User do
     expect(user).to_not be_valid
   end
 
+  it "is invalid with an existing name" do
+    user1 = User.new(name: "chuckeles", email: "me1@chuckeles.me")
+    user2 = User.new(name: "chuckeles", email: "me2@chuckeles.me")
+
+    user1.save
+
+    expect(user2).to_not be_valid
+  end
+
   it "is invalid without an email" do
     user = User.new(name: "chuckeles")
 
@@ -38,6 +47,15 @@ RSpec.describe User do
     expect(user1).to_not be_valid
     expect(user2).to_not be_valid
     expect(user3).to_not be_valid
+  end
+
+  it "is invalid with an existing email" do
+    user1 = User.new(name: "chuckeles1", email: "me@chuckeles.me")
+    user2 = User.new(name: "chuckeles2", email: "me@chuckeles.me")
+
+    user1.save
+
+    expect(user2).to_not be_valid
   end
 
 end
