@@ -24,6 +24,7 @@ end
 group :test do
   gem "rake"
   gem "rspec-rails"
+  gem "spring-commands-rspec"
   gem "capybara"
 end
 

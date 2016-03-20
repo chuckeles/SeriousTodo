@@ -136,6 +136,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     spring (1.6.4)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -176,6 +178,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   spring
+  spring-commands-rspec
   turbolinks
   uglifier
   web-console
