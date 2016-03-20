@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
+  has_secure_password
+
 end

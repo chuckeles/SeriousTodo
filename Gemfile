@@ -11,6 +11,7 @@ gem "turbolinks"
 gem "jbuilder"
 
 gem "pg"
+gem "bcrypt"
 
 group :development do
   gem "web-console"
