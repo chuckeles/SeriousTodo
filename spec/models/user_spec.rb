@@ -30,7 +30,7 @@ RSpec.describe User do
     expect(user).to_not be_valid
   end
 
-  xit "is invalid with an invalid email" do
+  it "is invalid with an invalid email" do
     user1 = User.new(name: "chuckeles", email: "me")
     user2 = User.new(name: "chuckeles", email: "me.me")
     user3 = User.new(name: "chuckeles", email: "me@me")
