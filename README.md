@@ -1,10 +1,9 @@
 # Serious Todo
 
-[![Travis](https://img.shields.io/travis/chuckeles/serious-todo.svg?style=flat-square&label=tests)](https://travis-ci.org/chuckeles/serious-todo)
-[![GitHub release](https://img.shields.io/github/release/chuckeles/serious-todo.svg?style=flat-square)](https://github.com/chuckeles/serious-todo/releases)
-
-An app for lazy Todoist users.
+An app for lazy Todoist users. Read the better description [on the Trello card](https://trello.com/c/YiBkXR59).
 
 ## Links
 
 - [Trello](https://trello.com/b/LywuGdtf)
+- [Travis](https://travis-ci.org/chuckeles/serious-todo)
+- [Heroku](http://serious-todo.heroku.com)
