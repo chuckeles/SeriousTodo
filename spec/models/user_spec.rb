@@ -43,10 +43,12 @@ RSpec.describe User do
     user1 = User.new(name: "chuckeles", email: "me")
     user2 = User.new(name: "chuckeles", email: "me.me")
     user3 = User.new(name: "chuckeles", email: "me@me")
+    user4 = User.new(name: "chuckeles", email: "me@me..me")
 
     expect(user1).to_not be_valid
     expect(user2).to_not be_valid
     expect(user3).to_not be_valid
+    expect(user4).to_not be_valid
   end
 
   it "is invalid with an existing email" do
