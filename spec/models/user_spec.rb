@@ -60,4 +60,12 @@ RSpec.describe User do
     expect(user3).to_not be_valid
   end
 
+  it "has email downcased in the database" do
+    user = User.new(name: "chuckeles", email: "ME@chuckeles.ME")
+
+    user.save
+
+    expect(user.reload.email).to eq("me@chuckeles.me")
+  end
+
 end
