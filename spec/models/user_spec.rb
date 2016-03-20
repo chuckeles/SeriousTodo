@@ -1,7 +1,7 @@
 RSpec.describe User do
 
   before do
-    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foo", password_confirmation: "foo")
+    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
   end
 
   it "is valid with a name and an email" do
@@ -78,6 +78,18 @@ RSpec.describe User do
     @user.save
 
     expect(@user.reload.email).to eq("me@chuckeles.me")
+  end
+
+  it "is invalid without a password" do
+    @user.password = "   "
+
+    expect(@user).to_not be_valid
+  end
+
+  it "is invalid with a short password" do
+    @user.password = @user.password_confirmation = "foo"
+
+    expect(@user).to_not be_valid
   end
 
 end
