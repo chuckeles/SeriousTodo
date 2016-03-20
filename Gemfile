@@ -11,6 +11,7 @@ gem "turbolinks"
 gem "jbuilder"
 
 gem "pg"
+gem "bcrypt"
 
 group :development do
   gem "web-console"
@@ -24,6 +25,7 @@ end
 group :test do
   gem "rake"
   gem "rspec-rails"
+  gem "spring-commands-rspec"
   gem "capybara"
 end
 
