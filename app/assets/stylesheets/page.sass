@@ -1,0 +1,24 @@
+@import "colors"
+
+.page
+  display:        flex
+  flex-direction: column
+  min-height:     100vh
+  padding:        2em
+
+  &.center
+    align-items:     center
+    justify-content: center
+
+  &.primary
+    background-color: $primary
+    color:            $white
+
+.page-content
+  flex-grow: 1
+
+  &.center
+    align-items:     center
+    display:         flex
+    flex-direction:  column
+    justify-content: center

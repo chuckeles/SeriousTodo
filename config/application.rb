@@ -10,6 +10,7 @@ module SeriousTodo
     config.generators do |g|
       g.assets(false)
       g.test_framework(:rspec)
+      g.template_engine(:slim)
     end
 
     config.x.name = "Serious Todo"
