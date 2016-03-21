@@ -2,9 +2,10 @@ source "https://rubygems.org"
 
 gem "rails"
 
+gem "slim-rails"
 gem "sass-rails"
-gem "uglifier"
 gem "coffee-rails"
+gem "uglifier"
 gem "normalize-rails"
 
 gem "turbolinks"
