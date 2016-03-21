@@ -1,0 +1,7 @@
+main.page
+  = render "partials/menu"
+
+  .page-content.center
+    = gravatar_for @user
+    p = @user.name
+    p = @user.email
