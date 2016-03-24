@@ -20,4 +20,18 @@ RSpec.describe UsersController do
     # TODO: test if it shows correct user
   end
 
+  describe "GET new" do
+    it "gets new" do
+      get :new
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "has new template" do
+      get :new
+
+      expect(response).to render_template(:new)
+    end
+  end
+
 end
