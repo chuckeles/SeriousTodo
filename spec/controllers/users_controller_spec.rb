@@ -16,8 +16,6 @@ RSpec.describe UsersController do
 
       expect(response).to render_template(:show)
     end
-
-    # TODO: test if it shows correct user
   end
 
   describe "GET new" do
