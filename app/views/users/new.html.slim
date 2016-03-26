@@ -3,6 +3,8 @@ main.page
 
   .page-content.center
     = form_for @user, html: { class: "form new_user" } do |f|
+      = render "partials/errors"
+
       .form-group
         = f.label :name, class: "form-label"
         = f.text_field :name, placeholder: "Guy", class: "form-input"
