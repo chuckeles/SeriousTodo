@@ -9,7 +9,8 @@ RSpec.describe "Signup page" do
     fill_in "Confirm password", with: "foobaz"
     click_button "Create account"
 
-    expect(page).to have_content("Success!")
+    expect(page).to have_content("chuckeles")
+    expect(page).to have_content("me@chuckeles.me")
   end
 
   it "displays an error when the name is missing" do
