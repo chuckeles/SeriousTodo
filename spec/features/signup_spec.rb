@@ -36,6 +36,19 @@ RSpec.describe "Signup page" do
     expect(page).to have_content("Name is too long")
   end
 
+  it "displays an error when the name is already taken" do
+    User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
+    visit "/signup"
+
+    fill_in "Name", with: "chuckeles"
+    fill_in "Email", with: "me2@chuckeles.me"
+    fill_in "Password", with: "foobaz"
+    fill_in "Confirm password", with: "foobaz"
+    click_button "Create account"
+
+    expect(page).to have_content("Name has already been taken")
+  end
+
   it "displays an error when the email is missing" do
     visit "/signup"
 
@@ -57,6 +70,19 @@ RSpec.describe "Signup page" do
     click_button "Create account"
 
     expect(page).to have_content("Email is invalid")
+  end
+
+  it "displays an error when the email is already taken" do
+    User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
+    visit "/signup"
+
+    fill_in "Name", with: "chuckeles2"
+    fill_in "Email", with: "me@chuckeles.me"
+    fill_in "Password", with: "foobaz"
+    fill_in "Confirm password", with: "foobaz"
+    click_button "Create account"
+
+    expect(page).to have_content("Email has already been taken")
   end
 
   it "displays an error when the password is missing" do
