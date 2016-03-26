@@ -1,0 +1,42 @@
+@import colors
+
+.button
+  $border-hover: 12px
+  $border-pressed: 4px
+
+  background-color: $accent
+  border:           0
+  bottom:           0
+  margin:           1em
+  padding:          1em 2em
+  position:         relative
+  text-align:       center
+  transition:       bottom .2s ease-in
+
+  &:hover,
+  &:focus
+    bottom:  $border-hover
+    outline: none
+
+    &::after
+      height: $border-hover
+
+  &:active
+    bottom:     $border-pressed
+    outline:    none
+    transition: border 0s
+
+    &::after
+      height:     $border-pressed
+      transition: height 0s
+
+  &::after
+    background-color: darken($accent, 10%)
+    content:          ""
+    display:          block
+    left:             0
+    height:           0
+    position:         absolute
+    top:              100%
+    transition:       height .2s ease-in
+    width:            100%
