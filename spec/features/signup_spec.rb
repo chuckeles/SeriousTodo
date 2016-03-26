@@ -12,7 +12,7 @@ RSpec.describe "Signup page" do
     expect(page).to include("Success!")
   end
 
-  it "does not create a user when the name is missing" do
+  it "displays an error when the name is missing" do
     visit "/signup"
 
     fill_in "Email", with: "me@chuckeles.me"
@@ -23,7 +23,7 @@ RSpec.describe "Signup page" do
     expect(current_path).to eq("/signup")
   end
 
-  it "does not create a user when the email is missing" do
+  it "displays an error when the email is missing" do
     visit "/signup"
 
     fill_in "Name", with: "chuckeles"
@@ -34,7 +34,7 @@ RSpec.describe "Signup page" do
     expect(current_path).to eq("/signup")
   end
 
-  it "does not create a user when the email is wrong" do
+  it "displays an error when the email is wrong" do
     visit "/signup"
 
     fill_in "Name", with: "chuckeles"
