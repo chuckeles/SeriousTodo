@@ -38,6 +38,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    autoprefixer-rails (6.3.4)
+      execjs
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.2)
@@ -79,6 +81,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
     pg (0.18.4)
+    puma (3.2.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -177,6 +180,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   bcrypt
   byebug
   capybara
@@ -184,6 +188,7 @@ DEPENDENCIES
   jbuilder
   normalize-rails
   pg
+  puma
   rails
   rails_12factor
   rake

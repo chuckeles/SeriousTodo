@@ -7,6 +7,7 @@ gem "sass-rails"
 gem "coffee-rails"
 gem "uglifier"
 gem "normalize-rails"
+gem "autoprefixer-rails"
 
 gem "turbolinks"
 gem "jbuilder"
@@ -32,4 +33,5 @@ end
 
 group :production do
   gem "rails_12factor"
+  gem "puma"
 end

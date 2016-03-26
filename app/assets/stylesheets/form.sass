@@ -1,0 +1,25 @@
+@import colors
+
+.form-group
+  margin: 1em
+
+  &.center
+    text-align: center
+
+.form-label
+  display:       block
+  margin-bottom: .5em
+
+.form-input
+  border:     0
+  display:    block
+  min-width:  20em
+  padding:    1em
+  transition: background-color .2s ease-in, color .2s ease-in
+
+  &:hover,
+  &:focus,
+  &:active
+    background-color: $primary-light
+    color:            $white
+    outline:          none
