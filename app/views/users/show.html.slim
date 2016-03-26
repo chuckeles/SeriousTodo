@@ -2,6 +2,6 @@ main.page
   = render "partials/menu"
 
   .page-content.center
-    = gravatar_for @user
+    = gravatar_for @user, size: 200
     p = @user.name
     p = @user.email
