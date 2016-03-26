@@ -7,6 +7,7 @@ gem "sass-rails"
 gem "coffee-rails"
 gem "uglifier"
 gem "normalize-rails"
+gem "autoprefixer-rails"
 
 gem "turbolinks"
 gem "jbuilder"

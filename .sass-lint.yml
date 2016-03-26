@@ -1,4 +1,5 @@
 rules:
+  indentation: 0
   no-css-comments: 0
   quotes:
     - 1

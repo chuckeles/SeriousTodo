@@ -1,0 +1,51 @@
+@import colors
+
+.form-group
+  margin: 1em
+
+  &.center
+    text-align: center
+
+.form-label
+  display:       block
+  margin-bottom: .5em
+
+.form-input
+  border:     0
+  display:    block
+  min-width:  20em
+  padding:    1em
+  transition: background-color .2s ease-in, color .2s ease-in
+
+  &:hover,
+  &:focus,
+  &:active
+    background-color: $primary-light
+    color:            $white
+    outline:          none
+
+.form-submit
+  $border-hover: 12px
+  $border-pressed: 4px
+
+  background-color: $accent
+  border:           0
+  border-bottom:    0 solid darken($accent, 10%)
+  bottom:           0
+  margin:           1em
+  outline:          none
+  padding:          1em 2em
+  position:         relative
+  text-align:       center
+  transition:       border .2s ease-in, bottom .2s ease-in
+
+  &:hover,
+  &:focus
+    border-bottom-width: $border-hover
+    bottom:              $border-hover
+
+  &:active
+    border-bottom-width: $border-pressed
+    bottom:              $border-pressed
+    outline:             none
+    transition:          border 0s
