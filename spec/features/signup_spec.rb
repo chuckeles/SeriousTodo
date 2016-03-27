@@ -1,7 +1,7 @@
 RSpec.describe "Signup page" do
 
   it "creates new user when all required fields are filled" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me@chuckeles.me"
@@ -14,7 +14,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the name is missing" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Email", with: "me@chuckeles.me"
     fill_in "Password", with: "foobaz"
@@ -25,7 +25,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the name is too long" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "c" * 33
     fill_in "Email", with: "me@chuckeles.me"
@@ -38,7 +38,7 @@ RSpec.describe "Signup page" do
 
   it "displays an error when the name is already taken" do
     User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me2@chuckeles.me"
@@ -50,7 +50,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the email is missing" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Password", with: "foobaz"
@@ -61,7 +61,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the email is wrong" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me@me"
@@ -74,7 +74,7 @@ RSpec.describe "Signup page" do
 
   it "displays an error when the email is already taken" do
     User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles2"
     fill_in "Email", with: "me@chuckeles.me"
@@ -86,7 +86,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the password is missing" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me@chuckeles.me"
@@ -96,7 +96,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the passwords do not match" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me@chuckeles.me"
@@ -108,7 +108,7 @@ RSpec.describe "Signup page" do
   end
 
   it "displays an error when the password is too short" do
-    visit "/signup"
+    visit new_user_path
 
     fill_in "Name", with: "chuckeles"
     fill_in "Email", with: "me@chuckeles.me"
