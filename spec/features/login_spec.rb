@@ -2,11 +2,11 @@ RSpec.describe "Login" do
 
 
   it "creates new session when the credentials are correct" do
-    User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
+    user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
     visit login_path
 
-    fill_in "Email", with: "me@chuckeles.me"
-    fill_in "Password", with: "foobaz"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Login"
 
     expect(page).to have_content("chuckeles")
@@ -44,9 +44,6 @@ RSpec.describe "Login" do
     visit login_path
 
     click_button "Login"
-
-    expect(page).to have_content("Invalid email and password combination")
-
     visit login_path
 
     expect(page).to_not have_content("Invalid email and password combination")
