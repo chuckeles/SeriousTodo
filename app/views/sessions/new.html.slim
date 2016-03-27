@@ -1,3 +1,18 @@
-h1 Sessions#new
+main.page
+  = render "partials/menu"
 
-p Find me in app/views/sessions/new.html.slim
+  .page-content.center
+    = render "partials/flashes"
+
+    = form_for :session, url: login_path, html: { class: "form new_session" } do |f|
+      .form-group
+        = f.label :email, class: "form-label"
+        = f.email_field :email, placeholder: "guy@example.com", class: "form-input"
+
+      .form-group
+        = f.label :password, class: "form-label"
+        = f.password_field :password, class: "form-input"
+
+      .form-group.center
+        = f.button "Login", class: "button"
+

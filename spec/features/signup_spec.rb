@@ -1,4 +1,4 @@
-RSpec.describe "Signup page" do
+RSpec.describe "Signup" do
 
   it "creates new user when all required fields are filled" do
     visit new_user_path
