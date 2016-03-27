@@ -6,13 +6,13 @@ RSpec.describe UsersController do
     end
 
     it "gets show" do
-      get :show, { id: @user.id }
+      get :show, { name: @user.name }
 
       expect(response).to have_http_status(:ok)
     end
 
     it "has show template" do
-      get :show, { id: @user.id }
+      get :show, { name: @user.name }
 
       expect(response).to render_template(:show)
     end

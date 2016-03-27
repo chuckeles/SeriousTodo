@@ -5,10 +5,14 @@ class User < ActiveRecord::Base
             format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }
 
+  has_secure_password
+
   before_save do
     self.email.downcase!
   end
 
-  has_secure_password
+  def to_param
+    name
+  end
 
 end
