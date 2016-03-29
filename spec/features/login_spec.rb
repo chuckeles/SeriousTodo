@@ -1,6 +1,5 @@
 RSpec.describe "Login" do
 
-
   it "creates new session when the credentials are correct" do
     user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
     visit login_path
@@ -12,24 +11,6 @@ RSpec.describe "Login" do
     expect(page).to have_content("chuckeles")
   end
 
-  it "displays an error when the email is missing" do
-    visit login_path
-
-    fill_in "Password", with: "foobaz"
-    click_button "Login"
-
-    expect(page).to have_content("Invalid email and password combination")
-  end
-
-  it "displays an error when the password is missing" do
-    visit login_path
-
-    fill_in "Email", with: "me@chuckeles.me"
-    click_button "Login"
-
-    expect(page).to have_content("Invalid email and password combination")
-  end
-
   it "displays an error when the credentials are wrong" do
     visit login_path
 
@@ -37,7 +18,7 @@ RSpec.describe "Login" do
     fill_in "Password", with: "foobaaz"
     click_button "Login"
 
-    expect(page).to have_content("Invalid email and password combination")
+    expect(page).to have_content("Invalid")
   end
 
   it "hides the error message after another request" do
@@ -46,7 +27,7 @@ RSpec.describe "Login" do
     click_button "Login"
     visit login_path
 
-    expect(page).to_not have_content("Invalid email and password combination")
+    expect(page).to_not have_content("Invalid")
   end
 
 end
