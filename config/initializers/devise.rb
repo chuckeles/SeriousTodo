@@ -1,7 +1,7 @@
 Devise.setup do |config|
   require "devise/orm/active_record"
 
-  config.mailer_sender = "please-dont-reply@serious-todo.com"
+  config.mailer_sender = "please-dont-reply@" + Rails.application.secrets.domain_name
   config.send_password_change_notification = false
   config.sign_out_via = :delete
 
