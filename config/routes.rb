@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root                to: "static_pages#home"
   get "about",        to: "static_pages#about"
 
-  # get "users/:name",  to: "users#show", as: :user
-
   devise_for :users
+
+  get "users/:name",  to: "users#show", as: :user
 
 end
