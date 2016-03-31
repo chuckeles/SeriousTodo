@@ -3,13 +3,14 @@ nav.menu-bar
     .menu-spacer
     li
       = link_to "About", about_path, class: "menu-item"
-    - if logged_in?
+
+    - if user_signed_in?
       li
         = link_to "Profile", current_user, class: "menu-item"
       li
-        = link_to "Logout", logout_path, class: "menu-item"
+        = link_to "Log out", destroy_user_session_path, class: "menu-item"
     - else
       li
-        = link_to "Login", login_path, class: "menu-item"
+        = link_to "Sign up", new_user_registration_path, class: "menu-item"
       li
-        = link_to "Sign up", new_user_path, class: "menu-item"
+        = link_to "Log in", new_user_session_path, class: "menu-item"

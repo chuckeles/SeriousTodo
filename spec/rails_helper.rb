@@ -5,6 +5,7 @@ require "spec_helper"
 require "rspec/rails"
 require "capybara/rails"
 require "capybara/rspec"
+require "devise"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -13,4 +14,5 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
+  config.include Devise::TestHelpers, type: :controller
 end

@@ -1,7 +1,7 @@
 RSpec.describe User do
 
   before do
-    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
+    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobazzz", password_confirmation: "foobazzz")
   end
 
   it "is valid with a name and an email" do
@@ -10,12 +10,6 @@ RSpec.describe User do
 
   it "is invalid without a name" do
     @user.name = ""
-
-    expect(@user).to_not be_valid
-  end
-
-  it "is invalid with a name that is too long" do
-    @user.name = "c" * 33
 
     expect(@user).to_not be_valid
   end
@@ -29,12 +23,6 @@ RSpec.describe User do
 
   it "is invalid without an email" do
     @user.email = ""
-
-    expect(@user).to_not be_valid
-  end
-
-  it "is invalid with an email that is too long" do
-    @user.email = "c" * 243 + "@chuckeles.me"
 
     expect(@user).to_not be_valid
   end

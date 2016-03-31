@@ -13,7 +13,7 @@ gem "turbolinks"
 gem "jbuilder"
 
 gem "pg"
-gem "bcrypt"
+gem "devise"
 
 group :development do
   gem "web-console"

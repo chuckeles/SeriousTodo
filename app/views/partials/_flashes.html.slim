@@ -1,3 +1,9 @@
 - if flash[:danger]
-  .errors
+  .flashes.danger
     p = flash[:danger]
+- if flash[:alert]
+  .flashes.alert
+    p = flash[:alert]
+- if flash[:notice]
+  .flashes.notice
+    p = flash[:notice]
