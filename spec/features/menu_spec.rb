@@ -1,11 +1,11 @@
 RSpec.describe "Main menu" do
 
   before do
-    @user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
+    @user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
   end
 
   let :login do
-    visit login_path
+    visit new_user_session_path
     fill_in "Email", with: @user.email
     fill_in "Password", with: @user.password
     click_button "Login"
@@ -24,7 +24,7 @@ RSpec.describe "Main menu" do
 
     click_link "Login"
 
-    expect(page).to have_current_path(login_path)
+    expect(page).to have_current_path(new_user_session_path)
   end
 
   it "has a link to signup" do
@@ -32,7 +32,7 @@ RSpec.describe "Main menu" do
 
     click_link "Sign up"
 
-    expect(page).to have_current_path(new_user_path)
+    expect(page).to have_current_path(new_user_registration_path)
   end
 
   it "has profile and logout links and does not have signup and login links when a user is logged in" do

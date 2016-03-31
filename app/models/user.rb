@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :validatable
-
-  validates :name, presence: true, length: { maximum: 32 }, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   before_save do
     self.email.downcase!

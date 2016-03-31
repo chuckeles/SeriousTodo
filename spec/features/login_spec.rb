@@ -1,8 +1,8 @@
 RSpec.describe "Login" do
 
   it "creates new session when the credentials are correct" do
-    user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaz", password_confirmation: "foobaz")
-    visit login_path
+    user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+    visit new_user_session_path
 
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
@@ -12,7 +12,7 @@ RSpec.describe "Login" do
   end
 
   it "displays an error when the credentials are wrong" do
-    visit login_path
+    visit new_user_session_path
 
     fill_in "Email", with: "me@chuckeles.me"
     fill_in "Password", with: "foobaaz"
@@ -22,10 +22,10 @@ RSpec.describe "Login" do
   end
 
   it "hides the error message after another request" do
-    visit login_path
+    visit new_user_session_path
 
     click_button "Login"
-    visit login_path
+    visit new_user_session_path
 
     expect(page).to_not have_content("Invalid")
   end

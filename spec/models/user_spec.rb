@@ -14,12 +14,6 @@ RSpec.describe User do
     expect(@user).to_not be_valid
   end
 
-  it "is invalid with a name that is too long" do
-    @user.name = "c" * 33
-
-    expect(@user).to_not be_valid
-  end
-
   it "is invalid with an existing name" do
     @user.save
     user2 = @user.dup
