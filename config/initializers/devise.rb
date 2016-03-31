@@ -3,7 +3,7 @@ Devise.setup do |config|
 
   config.mailer_sender = "please-dont-reply@" + Rails.application.secrets.domain_name
   config.send_password_change_notification = false
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]

@@ -8,7 +8,7 @@ RSpec.describe "Main menu" do
     visit new_user_session_path
     fill_in "Email", with: @user.email
     fill_in "Password", with: @user.password
-    click_button "Login"
+    click_button "Log in"
   end
 
   it "has a link to about" do
@@ -22,7 +22,7 @@ RSpec.describe "Main menu" do
   it "has a link to login" do
     visit root_path
 
-    click_link "Login"
+    click_link "Log in"
 
     expect(page).to have_current_path(new_user_session_path)
   end
@@ -40,9 +40,9 @@ RSpec.describe "Main menu" do
     visit root_path
 
     expect(page).to have_content("Profile")
-    expect(page).to have_content("Logout")
-    expect(page).to_not have_content("Signup")
-    expect(page).to_not have_content("Login")
+    expect(page).to have_content("Log out")
+    expect(page).to_not have_content("Sign up")
+    expect(page).to_not have_content("Log in")
   end
 
 
@@ -59,10 +59,10 @@ RSpec.describe "Main menu" do
     login
     visit root_path
 
-    click_link "Logout"
+    click_link "Log out"
 
-    expect(page).to have_content("Login")
-    expect(page).to_not have_content("Logout")
+    expect(page).to have_content("Log in")
+    expect(page).to_not have_content("Log out")
   end
 
 end

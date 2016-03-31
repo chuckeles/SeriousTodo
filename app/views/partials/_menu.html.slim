@@ -5,12 +5,12 @@ nav.menu-bar
       = link_to "About", about_path, class: "menu-item"
 
     - if user_signed_in?
-      li
+      /li
         = link_to "Profile", current_user, class: "menu-item"
       li
-        = link_to "Logout", destroy_user_session_path, class: "menu-item"
+        = link_to "Log out", destroy_user_session_path, class: "menu-item"
     - else
       li
         = link_to "Sign up", new_user_registration_path, class: "menu-item"
       li
-        = link_to "Login", new_user_session_path, class: "menu-item"
+        = link_to "Log in", new_user_session_path, class: "menu-item"
