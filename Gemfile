@@ -14,6 +14,7 @@ gem "jbuilder"
 
 gem "pg"
 gem "devise"
+gem "roadie-rails"
 
 group :development do
   gem "web-console"

@@ -1,0 +1,4 @@
+h1 Hello #{ @user.name } and welcome!
+
+p Now just click this button to confirm your email address:
+= link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token), class: "button"
