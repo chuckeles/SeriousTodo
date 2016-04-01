@@ -17,6 +17,7 @@ gem "devise"
 
 group :development do
   gem "web-console"
+  gem "mailcatcher"
 end
 
 group :development, :test do
