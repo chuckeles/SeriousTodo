@@ -1,7 +1,9 @@
 RSpec.describe "Main menu" do
 
   before do
-    @user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+    @user.skip_confirmation!
+    @user.save!
   end
 
   let :login do

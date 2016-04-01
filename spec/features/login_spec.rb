@@ -1,7 +1,9 @@
 RSpec.describe "Login" do
 
   it "creates new session when the credentials are correct" do
-    user = User.create(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+    user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+    user.skip_confirmation!
+    user.save!
     visit new_user_session_path
 
     fill_in "Email", with: user.email
