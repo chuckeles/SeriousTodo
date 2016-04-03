@@ -1,5 +1,7 @@
 nav.menu-bar
   ul.menu
+    li
+      = link_to Rails.configuration.x.name, root_path, class: "menu-item"
     .menu-spacer
     li
       = link_to "About", about_path, class: "menu-item"
