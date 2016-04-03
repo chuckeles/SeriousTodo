@@ -23,3 +23,8 @@ Devise.setup do |config|
   config.sign_in_after_reset_password = false
 
 end
+
+Rails.application.config.to_prepare do
+  Devise::Mailer.layout "mailer"
+  Devise::Mailer.send :include, Roadie::Rails::Automatic
+end
