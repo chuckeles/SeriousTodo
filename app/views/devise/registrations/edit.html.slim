@@ -14,7 +14,7 @@ main.page
         = f.email_field :email, placeholder: "new email", class: "form-input"
 
       - if devise_mapping.confirmable? and resource.pending_reconfirmation?
-        p Currently waiting confirmation for #{ resource.unconfirmed_email }
+        p Currently waiting confirmation for #{ resource.unconfirmed_email }.
 
       .form-group
         = f.label :password, class: "form-label"
@@ -30,3 +30,7 @@ main.page
 
       .form-group.center
         = f.button "Save", class: "button"
+
+.page.center
+  = gravatar_for resource, size: 200
+  p You can #{ link_to "change your profile image on Gravatar", "http://en.gravatar.com/connect" }.
