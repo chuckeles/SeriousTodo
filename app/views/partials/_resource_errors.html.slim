@@ -1,0 +1,4 @@
+- if resource.errors.any?
+  .flashes.danger
+    - resource.errors.full_messages.each do |message|
+      p = message
