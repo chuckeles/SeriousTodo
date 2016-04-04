@@ -17,6 +17,7 @@ RSpec.describe "Profile" do
     click_link "Edit"
 
     fill_in "Name", with: "nochuckeles"
+    fill_in "Current password", with: @user.password
     click_button "Save"
 
     user = User.find(@user.id)
