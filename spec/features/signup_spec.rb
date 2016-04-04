@@ -12,4 +12,12 @@ RSpec.describe "Signup" do
     expect(User.count).to eq(1)
   end
 
+  it "displays an error when the form is not correct" do
+    visit new_user_registration_path
+
+    click_button "Sign up"
+
+    expect(page).to have_css(".flashes.danger")
+  end
+
 end
