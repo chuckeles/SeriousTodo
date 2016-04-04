@@ -1,6 +1,7 @@
 main.page
   = render "partials/menu"
   = render "partials/flashes"
+  = render "partials/resource_errors"
 
   .page-content.center
     = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form" }  do |f|

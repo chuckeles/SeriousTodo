@@ -21,7 +21,7 @@ RSpec.describe "Login" do
     fill_in "Password", with: "foobaaz"
     click_button "Log in"
 
-    expect(page).to have_content("Invalid")
+    expect(page).to have_css(".flashes.alert")
   end
 
   it "hides the error message after another request" do
@@ -30,7 +30,7 @@ RSpec.describe "Login" do
     click_button "Log in"
     visit new_user_session_path
 
-    expect(page).to_not have_content("Invalid")
+    expect(page).to_not have_css(".flashes.alert")
   end
 
 end
