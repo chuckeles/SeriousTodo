@@ -13,6 +13,14 @@ RSpec.describe "Main menu" do
     click_button "Log in"
   end
 
+  it "has a link to root" do
+    visit about_path
+
+    click_link Rails.configuration.x.name
+
+    expect(page).to have_current_path(root_path)
+  end
+
   it "has a link to about" do
     visit root_path
 
