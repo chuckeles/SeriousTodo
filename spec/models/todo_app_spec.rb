@@ -13,4 +13,10 @@ RSpec.describe TodoApp do
     expect(app.token).to eq("123")
   end
 
+  it "is not valid without a token" do
+    app = @user.todo_apps.build
+
+    expect(app).to_not be_valid
+  end
+
 end
