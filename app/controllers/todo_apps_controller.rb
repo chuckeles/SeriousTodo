@@ -1,11 +1,12 @@
 require "net/http"
 require "json"
+require "aes"
 
 class TodoAppsController < ApplicationController
 
-  def connect
-    redirect_to new_user_session_path unless user_signed_in?
+  before_action :authenticate_user!
 
+  def connect
     @todoist_url = "https://todoist.com/oauth/authorize?client_id=#{ Rails.application.secrets.todoist_id }&scope=data:read&state=#{ Rails.application.secrets.state }"
   end
 
@@ -21,11 +22,17 @@ class TodoAppsController < ApplicationController
       result = Net::HTTP.post_form(url, client_id: Rails.application.secrets.todoist_id, client_secret: Rails.application.secrets.todoist_secret, code: code)
 
       json_body = JSON.parse(result.body)
-      p json_body["access_token"]
+      save_token(json_body["access_token"])
       flash[:notice] = "Todoist successfully connected."
     end
 
     redirect_to todo_apps_connect_path
+  end
+
+  private
+
+  def save_token(token)
+    current_user.todo_apps.create(token: AES.encrypt(token, Rails.configuration.secrets.secret_key_base))
   end
 
 end

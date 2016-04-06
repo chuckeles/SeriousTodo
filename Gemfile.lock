@@ -37,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    aes (0.5.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.4)
       execjs
@@ -225,6 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aes
   autoprefixer-rails
   byebug
   capybara
