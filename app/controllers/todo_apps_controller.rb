@@ -7,7 +7,15 @@ class TodoAppsController < ApplicationController
   before_action :authenticate_user!
 
   def connect
-    @todoist_url = "https://todoist.com/oauth/authorize?client_id=#{ Rails.application.secrets.todoist_id }&scope=data:read&state=#{ Rails.application.secrets.state }"
+    if current_user.todo_apps.empty?
+      @todoist_url = "https://todoist.com/oauth/authorize?client_id=#{ Rails.application.secrets.todoist_id }&scope=data:read&state=#{ Rails.application.secrets.state }"
+      @button_text = "Connect Todoist"
+      @button_class = "button"
+    else
+      @todoist_url = "#"
+      @button_text = "Todoist connected"
+      @button_class = "button disabled"
+    end
   end
 
   def todoist
@@ -32,7 +40,7 @@ class TodoAppsController < ApplicationController
   private
 
   def save_token(token)
-    current_user.todo_apps.create(token: AES.encrypt(token, Rails.configuration.secrets.secret_key_base))
+    current_user.todo_apps.create(token: AES.encrypt(token, Rails.application.secrets.secret_key_base))
   end
 
 end
