@@ -27,6 +27,11 @@ RSpec.describe TodoApp do
 
       expect(TodoApp.first.token).to eq(app.token)
     end
+
+    it "can update existing todo app"
+    it "can delete a todo app"
+    it "can find all todo apps of a user"
+    it "can find by id"
   end
 
 end
