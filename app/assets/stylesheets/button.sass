@@ -14,15 +14,16 @@
   text-align:       center
   transition:       bottom .2s ease-in
 
-  &:hover,
-  &:focus
-    bottom:  $border-hover
-    outline: none
+  &:not(.disabled)
+    &:hover,
+    &:focus
+      bottom:  $border-hover
+      outline: none
 
-    &::after
-      height: $border-hover
+      &::after
+        height: $border-hover
 
-  &:active
+  &:not(.disabled):active
     bottom:     $border-pressed
     outline:    none
     transition: border 0s
@@ -41,3 +42,8 @@
     top:              100%
     transition:       height .2s ease-in
     width:            100%
+
+  &.disabled
+    background-color: mix($accent, $white)
+    color:            lighten($black, 25%)
+    cursor:           not-allowed

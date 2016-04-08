@@ -6,4 +6,6 @@ main.page
     p = @user.name
 
     - if current_user == @user
-      = link_to "Edit", edit_user_registration_path, class: "button"
+      .button-bar
+        = link_to "Edit", edit_user_registration_path, class: "button"
+        = link_to "Connect", todo_apps_connect_path, class: "button"

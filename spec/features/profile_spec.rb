@@ -24,6 +24,15 @@ RSpec.describe "Profile" do
     expect(user.name).to eq("nochuckeles")
   end
 
+  it "has a connect link if it is the current logged in user" do
+    log_in_as_user
+
+    visit user_path(@user)
+    click_link "Connect"
+
+    expect(page).to have_current_path(todo_apps_connect_path)
+  end
+
   def log_in_as_user
     visit new_user_session_path
 
