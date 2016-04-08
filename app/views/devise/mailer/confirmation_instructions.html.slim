@@ -1,4 +1,24 @@
-h1 Hello #{ @user.name } and welcome!
-
-p Now just click this button to confirm your email address:
-= link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token), class: "button"
+table.row
+  tr
+    th.columns.first.last
+      table
+        tr
+          th
+            h1.text-center Hello #{ @user.name }!
+            p.text-center Use the button below to confirm your email address:
+          th.expander
+table.row
+  tr
+    th.columns.first.last
+      table
+        tr
+          th
+            table.button.large.expanded
+              tr
+                td
+                  table
+                    tr
+                      td align="center"
+                        center
+                          = link_to "Confirm me", confirmation_url(@resource, confirmation_token: @token), class: "text-center"
+          th.expander
