@@ -1,15 +1,24 @@
-table
+table.row
   tr
-    th
-      h1.text-center Hello #{ @user.name }!
-      p.text-center Now just click this button to confirm your email address:
-      table.button.large.expand
+    th.columns.first.last
+      table
         tr
-          td
-            table
+          th
+            h1.text-center Hello #{ @user.name }!
+            p.text-center Use the button below to confirm your email address:
+          th.expander
+table.row
+  tr
+    th.columns.first.last
+      table
+        tr
+          th
+            table.button.large.expanded
               tr
                 td
-                  center data-parsed=""
-                    = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token), align: "center", class: "text-center"
-                th.expander
-    th.expander
+                  table
+                    tr
+                      td align="center"
+                        center
+                          = link_to "Confirm me", confirmation_url(@resource, confirmation_token: @token), class: "text-center"
+          th.expander

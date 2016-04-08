@@ -4,7 +4,7 @@ html xmlns="http://www.w3.org/1999/xhtml"
   head
 
     title = Rails.configuration.x.name
-    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
     meta name="viewport" content="width=device-width"
 
     = stylesheet_link_tag "mailer"
@@ -13,13 +13,8 @@ html xmlns="http://www.w3.org/1999/xhtml"
     table.body
       tr
         td.center align="center" valign="top"
-          center data-parsed=""
-            table.container.text-center
-              tbody
-                tr
-                  td
-                    table.row
-                      tbody
-                        tr
-                          th.small-12.large-12.columns.first.last
-                            == yield
+          center
+            table.container
+              tr
+                td
+                  == yield
