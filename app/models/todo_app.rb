@@ -41,4 +41,14 @@ class TodoApp < ActiveRecord::Base
     end
   end
 
+  def self.sql_find_by_id(id)
+    ActiveRecord::Base.connection.transaction do
+      ActiveRecord::Base.connection.select_one <<-SQL
+        select *
+        from todo_apps
+        where id = '#{id}'
+      SQL
+    end
+  end
+
 end

@@ -48,8 +48,18 @@ RSpec.describe TodoApp do
       expect(TodoApp.count).to eq(0)
     end
 
+    it "can find by id" do
+      app = TodoApp.new(user_id: @user.id, token: "why_dont_you_use_a_before_block...")
+      app.sql_insert
+
+      app2 = TodoApp.sql_find_by_id(app.id)
+
+      expect(app2["id"].to_i).to eq(app.id)
+      expect(app2["user_id"].to_i).to eq(app.user_id)
+      expect(app2["token"]).to eq(app.token)
+    end
+
     it "can find all todo apps of a user"
-    it "can find by id"
   end
 
 end
