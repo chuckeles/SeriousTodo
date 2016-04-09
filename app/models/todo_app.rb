@@ -11,7 +11,7 @@ class TodoApp < ActiveRecord::Base
     ActiveRecord::Base.connection.begin_db_transaction if do_transaction
     self.id = ActiveRecord::Base.connection.insert <<-SQL
       insert into todo_apps (user_id, token, created_at, updated_at)
-      values ('#{user_id}', '#{token}', '#{created_at}', '#{updated_at}')
+      values (#{user_id.to_i}, #{ActiveRecord::Base.sanitize(token)}, #{ActiveRecord::Base.sanitize(created_at)}, #{ActiveRecord::Base.sanitize(updated_at)})
     SQL
 
     if not valid? or not self.id
@@ -31,9 +31,9 @@ class TodoApp < ActiveRecord::Base
     ActiveRecord::Base.connection.transaction do
       ActiveRecord::Base.connection.update <<-SQL
         update todo_apps
-        set user_id = '#{user_id}',
-            token = '#{token}',
-            updated_at = '#{updated_at}'
+        set user_id = #{user_id.to_i},
+            token = #{ActiveRecord::Base.sanitize(token)},
+            updated_at = #{ActiveRecord::Base.sanitize(updated_at)}
       SQL
     end
   end
@@ -43,7 +43,7 @@ class TodoApp < ActiveRecord::Base
       ActiveRecord::Base.connection.delete <<-SQL
         delete
         from todo_apps
-        where id = '#{id}'
+        where id = #{id.to_i}
       SQL
     end
   end
@@ -53,7 +53,7 @@ class TodoApp < ActiveRecord::Base
       ActiveRecord::Base.connection.select_one <<-SQL
         select *
         from todo_apps
-        where id = '#{id}'
+        where id = #{id.to_i}
       SQL
     end
   end
@@ -63,7 +63,7 @@ class TodoApp < ActiveRecord::Base
       ActiveRecord::Base.connection.select_all <<-SQL
         select *
         from todo_apps
-        where user_id = '#{user_id}'
+        where user_id = #{user_id.to_i}
       SQL
     end.to_hash
   end
