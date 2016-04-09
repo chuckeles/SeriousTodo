@@ -4,15 +4,22 @@ class TodoApp < ActiveRecord::Base
   validates :token, presence: true
 
   def sql_insert
-    return false unless valid?
-
     self.created_at = self.updated_at = DateTime.now
 
-    ActiveRecord::Base.connection.transaction do
-      self.id = ActiveRecord::Base.connection.insert <<-SQL
-        insert into todo_apps (user_id, token, created_at, updated_at)
-        values ('#{user_id}', '#{token}', '#{created_at}', '#{updated_at}')
-      SQL
+    do_transaction = !ActiveRecord::Base.connection.transaction_open?
+
+    ActiveRecord::Base.connection.begin_db_transaction if do_transaction
+    self.id = ActiveRecord::Base.connection.insert <<-SQL
+      insert into todo_apps (user_id, token, created_at, updated_at)
+      values ('#{user_id}', '#{token}', '#{created_at}', '#{updated_at}')
+    SQL
+
+    if not valid? or not self.id
+      ActiveRecord::Base.connection.rollback_db_transaction if do_transaction
+      false
+    else
+      ActiveRecord::Base.connection.commit_db_transaction if do_transaction
+      true
     end
   end
 
