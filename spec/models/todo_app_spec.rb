@@ -19,7 +19,7 @@ RSpec.describe TodoApp do
     expect(app).to_not be_valid
   end
 
-  describe "SQL methods", focus: true do
+  describe "SQL methods" do
     it "can create a todo app" do
       app = TodoApp.new(user_id: @user.id, token: "secret_token")
 
