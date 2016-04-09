@@ -16,4 +16,19 @@ class TodoApp < ActiveRecord::Base
     end
   end
 
+  def sql_update
+    return false unless valid?
+
+    self.updated_at = DateTime.now
+
+    ActiveRecord::Base.connection.transaction do
+      ActiveRecord::Base.connection.update <<-SQL
+        update todo_apps
+        set user_id = '#{user_id}',
+            token = '#{token}',
+            updated_at = '#{updated_at}'
+      SQL
+    end
+  end
+
 end
