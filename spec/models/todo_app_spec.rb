@@ -32,6 +32,10 @@ RSpec.describe TodoApp do
     it "can delete a todo app"
     it "can find all todo apps of a user"
     it "can find by id"
+
+    after do
+      User.delete_all
+    end
   end
 
 end
