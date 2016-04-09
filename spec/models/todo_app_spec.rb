@@ -69,6 +69,26 @@ RSpec.describe TodoApp do
 
       expect(apps.size).to eq(5)
     end
+
+    it "can count apps by users" do
+      user2 = User.new(name: "chuckeles2", email: "me2@chuckeles.me", password: "foobaaaz", password_confirmation: "foobaaaz")
+      user2.skip_confirmation!
+      user2.save!
+
+      5.times do |i|
+        app = TodoApp.new(user_id: @user.id, token: "token#{i}")
+        app.sql_insert
+      end
+      4.times do |i|
+        app = TodoApp.new(user_id: user2.id, token: "token#{i}")
+        app.sql_insert
+      end
+
+      counts = TodoApp.sql_count_by_users_ordered
+
+      expect(counts[0]["todo_apps_count"].to_i).to eq(5)
+      expect(counts[1]["todo_apps_count"].to_i).to eq(4)
+    end
   end
 
 end

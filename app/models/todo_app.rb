@@ -61,4 +61,16 @@ class TodoApp < ActiveRecord::Base
     end.to_hash
   end
 
+  def self.sql_count_by_users_ordered
+    ActiveRecord::Base.connection.transaction do
+      ActiveRecord::Base.connection.select_all <<-SQL
+        select users.id as user_id, count(todo_apps.id) as todo_apps_count
+        from users
+        join todo_apps on user_id = users.id
+        group by users.id
+        order by todo_apps_count desc
+      SQL
+    end.to_hash
+  end
+
 end
