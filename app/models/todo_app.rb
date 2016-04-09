@@ -31,4 +31,14 @@ class TodoApp < ActiveRecord::Base
     end
   end
 
+  def sql_delete
+    ActiveRecord::Base.connection.transaction do
+      ActiveRecord::Base.connection.delete <<-SQL
+        delete
+        from todo_apps
+        where id = '#{id}'
+      SQL
+    end
+  end
+
 end
