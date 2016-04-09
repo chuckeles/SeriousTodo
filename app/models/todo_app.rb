@@ -51,4 +51,14 @@ class TodoApp < ActiveRecord::Base
     end
   end
 
+  def self.sql_find_by_user(user_id)
+    ActiveRecord::Base.connection.transaction do
+      ActiveRecord::Base.connection.select_all <<-SQL
+        select *
+        from todo_apps
+        where user_id = '#{user_id}'
+      SQL
+    end.to_hash
+  end
+
 end

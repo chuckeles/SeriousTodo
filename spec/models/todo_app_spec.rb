@@ -59,7 +59,16 @@ RSpec.describe TodoApp do
       expect(app2["token"]).to eq(app.token)
     end
 
-    it "can find all todo apps of a user"
+    it "can find all todo apps of a user" do
+      5.times do |i|
+        app = TodoApp.new(user_id: @user.id, token: "token#{i}")
+        app.sql_insert
+      end
+
+      apps = TodoApp.sql_find_by_user(@user.id)
+
+      expect(apps.size).to eq(5)
+    end
   end
 
 end
