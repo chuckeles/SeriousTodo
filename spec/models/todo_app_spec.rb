@@ -19,12 +19,13 @@ RSpec.describe TodoApp do
     expect(app).to_not be_valid
   end
 
-  describe "SQL methods" do
+  describe "SQL methods", focus: true do
     it "can create a todo app" do
       app = TodoApp.new(user_id: @user.id, token: "secret_token")
 
       app.sql_insert
 
+      expect(app.id).to be_truthy
       expect(TodoApp.first.token).to eq(app.token)
     end
 
@@ -32,10 +33,6 @@ RSpec.describe TodoApp do
     it "can delete a todo app"
     it "can find all todo apps of a user"
     it "can find by id"
-
-    after do
-      User.delete_all
-    end
   end
 
 end
