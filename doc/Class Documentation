@@ -1,0 +1,5 @@
+# Overview
+
+This is a documentation for the DBS class. The application itself is also for VOS class. It enables it's users to connect to their Todoist account, sync their tasks and then pledge money to complete them.
+
+The application is written in Ruby on Rails. It uses Postgresql database. The frontend is plain HTML and CSS (well, actually Slim and SASS).
