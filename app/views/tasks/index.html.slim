@@ -1,0 +1,10 @@
+main.page
+  = render "partials/menu"
+  = render "partials/flashes"
+
+  .page-content.center
+    p Here will be the pledged tasks...
+
+section.page.center
+  - @items.each do |item|
+    p = item[:content]

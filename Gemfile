@@ -20,6 +20,7 @@ gem "aes"
 group :development do
   gem "web-console"
   gem "mailcatcher"
+  gem "quiet_assets"
 end
 
 group :development, :test do

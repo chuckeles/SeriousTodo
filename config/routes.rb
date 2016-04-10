@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get "users/:name",       to: "users#show", as: :user
   get "todo-apps/connect", to: "todo_apps#connect"
   get "todo-apps/todoist", to: "todo_apps#todoist"
+  get "tasks",             to: "tasks#index"
 
 end
