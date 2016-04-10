@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get "todo-apps/connect", to: "todo_apps#connect"
   get "todo-apps/todoist", to: "todo_apps#todoist"
 
+  resources :tasks
+
 end

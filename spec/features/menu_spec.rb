@@ -68,6 +68,15 @@ RSpec.describe "Main menu" do
     expect(page).to_not have_content("Log out")
   end
 
+  it "has a link to tasks" do
+    log_in
+    visit root_path
+
+    click_link "Tasks"
+
+    expect(page).to have_current_path(tasks_path)
+  end
+
   def log_in
     visit new_user_session_path
 
