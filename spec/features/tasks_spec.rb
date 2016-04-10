@@ -14,6 +14,16 @@ RSpec.describe "Tasks" do
 
   it "redirect to connect when no app is connected" do
     log_in
+
+    visit tasks_path
+
+    expect(page).to have_current_path(todo_apps_connect_path)
+  end
+
+  it "redirect to connect when the token is invalid" do
+    log_in
+    connect_todo_app
+
     visit tasks_path
 
     expect(page).to have_current_path(todo_apps_connect_path)

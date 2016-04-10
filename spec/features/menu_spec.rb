@@ -73,8 +73,6 @@ RSpec.describe "Main menu" do
     visit root_path
 
     click_link "Tasks"
-
-    expect(page).to have_current_path(tasks_path)
   end
 
   def log_in
