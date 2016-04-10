@@ -1,5 +1,6 @@
 require "net/http"
 require "json"
+require "aes"
 
 class TasksController < ApplicationController
 
@@ -16,7 +17,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    result = Net::HTTP.post_form(@@todoist_url, token: @app.token, seq_no: 0, resource_types: '["items"]')
+    token = AES.decrypt(@app.token, Rails.application.secrets.secret_key_base)
+    result = Net::HTTP.post_form(@@todoist_url, token: token, seq_no: 0, resource_types: '["items"]')
     json_body = JSON.parse(result.body)
 
     if json_body["error"] and json_body["error"] == "Invalid token"
@@ -26,7 +28,15 @@ class TasksController < ApplicationController
       return
     end
 
-    p json_body
+    @items = json_body["Items"].map do |item|
+      {
+        id: item["id"],
+        content: item["content"]
+      }
+    end
+    @items.sort! do |a, b|
+      a[:content] <=> b[:content]
+    end
   end
 
 end

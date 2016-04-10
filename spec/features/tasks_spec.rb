@@ -1,3 +1,5 @@
+require "aes"
+
 RSpec.describe "Tasks" do
 
   before do
@@ -37,7 +39,7 @@ RSpec.describe "Tasks" do
   end
 
   def connect_todo_app
-    @user.todo_apps.create(token: "what_is_this_huh")
+    @user.todo_apps.create(token: AES.encrypt("what_is_this_huh", Rails.application.secrets.secret_key_base))
   end
 
 end
