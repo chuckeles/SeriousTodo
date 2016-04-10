@@ -4,6 +4,15 @@ This is a documentation for the DBS class. The application itself is also for VO
 
 The application is written in Ruby on Rails. It uses Postgresql database. The frontend is plain HTML and CSS (well, actually Slim and SASS).
 
+### Links
+
+There are the most important links:
+
+- [Github repository](https://github.com/chuckeles/serious-todo)
+- [Trello board](https://trello.com/b/LywuGdtf/serious-todo)
+- [Travis](https://travis-ci.org/chuckeles/serious-todo)
+- [Heroku hosted version](https://serious-todo.herokuapp.com)
+
 ## Functionality
 
 The functionality implemented so far is as follows. The user can create an account. The email address has to be confirmed. The app uses [Devise](http://devise.plataformatec.com.br/) for user management and [Gravatar](http://www.gravatar.com/) for profile images. Then the user can connect his Todoist account. After that the app can fetch Todoist tasks and display them.
@@ -11,3 +20,7 @@ The functionality implemented so far is as follows. The user can create an accou
 ## Database Model
 
 It is very simple. `users` for users and `todo_apps` for Todoist connections (tokens). Check the [`db/schema.rb` file](https://github.com/chuckeles/serious-todo/blob/master/db/schema.rb) for the current database schema.
+
+## Tests
+
+I use [RSpec](http://rspec.info/) and [Capybara](https://github.com/jnicklas/capybara) for testing. See the [`spec` folder](https://github.com/chuckeles/serious-todo/tree/master/spec).
