@@ -8,6 +8,10 @@ class Todoist
     user.todo_apps.any?
   end
 
+  def self.connection(user)
+    user.todo_apps.first
+  end
+
   def self.authorize_url
     @@authorize_url + "?client_id=#{ Rails.application.secrets.todoist_id }&scope=data:read&state=#{ Rails.application.secrets.state }"
   end
@@ -29,10 +33,27 @@ class Todoist
     end
   end
 
-  def self.items(user)
-  end
+  def self.items(user, flash)
+    url = URI(@@sync_url)
+    token = AES.decrypt(connection(user).token, Rails.application.secrets.secret_key_base)
+    result = Net::HTTP.post_form(url, token: token, seq_no: 0, resource_types: '["items"]')
+    json_body = JSON.parse(result.body)
 
-  def self.item(user)
+    if json_body["error"] and json_body["error"] == "Invalid token"
+      connection(user).destroy
+      flash[:danger] = "Invalid token! Please connect the todo app again."
+      false
+    end
+
+    items = json_body["Items"].map do |item|
+      {
+        id: item["id"],
+        content: item["content"]
+      }
+    end
+    items.sort do |a, b|
+      a[:content] <=> b[:content]
+    end
   end
 
 end
