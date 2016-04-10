@@ -24,3 +24,11 @@ It is very simple. `users` for users and `todo_apps` for Todoist connections (to
 ## Tests
 
 I use [RSpec](http://rspec.info/) and [Capybara](https://github.com/jnicklas/capybara) for testing. See the [`spec` folder](https://github.com/chuckeles/serious-todo/tree/master/spec).
+
+## Where is your SQL?
+
+It is in the [model TodoApp](https://github.com/chuckeles/serious-todo/blob/master/app/models/todo_app.rb#L6) and [here are the specs](https://github.com/chuckeles/serious-todo/blob/master/spec/models/todo_app_spec.rb#L22).
+
+## Where is the database dump?
+
+I don't think there's any need for that. The database config is set up to use the defaults. Just load the schema with `rake db:schema:load`. Then create an account and connect Todoist.
