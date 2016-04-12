@@ -1,5 +1,12 @@
 # Serious Todo
 
+[![Travis](https://img.shields.io/travis/chuckeles/serious-todo.svg?maxAge=2592000&style=flat-square&label=tests)](https://travis-ci.org/chuckeles/serious-todo)
+[![Code Climate](https://img.shields.io/codeclimate/github/chuckeles/serious-todo.svg?maxAge=2592000&style=flat-square)](https://codeclimate.com/github/chuckeles/serious-todo)
+[![Gemnasium](https://img.shields.io/gemnasium/chuckeles/serious-todo.svg?maxAge=2592000&style=flat-square)](https://gemnasium.com/github.com/chuckeles/serious-todo)
+
+[![GitHub release](https://img.shields.io/github/release/chuckeles/serious-todo.svg?maxAge=2592000&style=flat-square)](https://github.com/chuckeles/serious-todo/releases)
+[![GitHub commits](https://img.shields.io/github/commits-since/chuckeles/serious-todo/v0.2.0.svg?maxAge=2592000&style=flat-square)](https://github.com/chuckeles/serious-todo/releases)
+
 An app for lazy Todoist users.
 
 This is a board for my school project. The basic gist of it is that it will integrate with [Todoist](https://todoist.com) (and other todo apps later). Users will then be able to pledge real money to complete a particular task. Kind of like [Beeminder](https://www.beeminder.com) but with the focus on todo apps and specific tasks.
