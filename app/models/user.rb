@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :validatable, :confirmable
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false },
+    format: { with: /\A[a-z0-9_-]+\z/i }
 
   has_many :todo_apps, dependent: :destroy
 

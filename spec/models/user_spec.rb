@@ -21,6 +21,12 @@ RSpec.describe User do
     expect(user2).to_not be_valid
   end
 
+  it "is invalid with an invalid name" do
+    @user.name = "yo_this_is_not_coo$"
+
+    expect(@user).to_not be_valid
+  end
+
   it "is invalid without an email" do
     @user.email = ""
 
