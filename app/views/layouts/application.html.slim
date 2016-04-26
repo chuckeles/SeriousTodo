@@ -14,9 +14,4 @@ html
 
     == yield
 
-    - if Rails.env.development?
-      section.page.center
-        strong
-          pre Params
-        = debug(params)
     = javascript_include_tag "application", "data-turbolinks-track" => true
