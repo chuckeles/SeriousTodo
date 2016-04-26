@@ -1,9 +1,12 @@
-main.page
-  = render "partials/menu"
-  = render "partials/flashes"
-  = render "partials/resource_errors"
+main
 
-  .page-content.center
+  .page
+  
+    = gravatar_for resource, size: 200
+    p You can #{ link_to "change your profile image on Gravatar", "http://en.gravatar.com/connect" }.
+
+  .page
+
     = form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" } do |f|
       .form-group
         = f.label :name, class: "form-label"
@@ -30,7 +33,3 @@ main.page
 
       .form-group.center
         = f.button "Save", class: "button"
-
-section.page.center
-  = gravatar_for resource, size: 200
-  p You can #{ link_to "change your profile image on Gravatar", "http://en.gravatar.com/connect" }.

@@ -1,10 +1,8 @@
-main.page
-  = render "partials/menu"
-  = render "partials/flashes"
+main
 
-  .page-content.center
-    p Here will be the pledged tasks...
+  section.page
+      p Here will be the pledged tasks...
 
-section.page.center
-  - @items.each do |item|
-    p = item[:content]
+  section.page
+    - @items.each do |item|
+      p = item[:content]
