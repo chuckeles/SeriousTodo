@@ -1,13 +1,15 @@
 main.page
     
+  h1 Log in
+    
   = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: "form" } do |f|
     .form-group
       = f.label :email, class: "form-label"
-      = f.email_field :email, placeholder: "email", autofocus: true, class: "form-input"
+      = f.email_field :email, placeholder: "your precious email", autofocus: true, class: "form-input"
 
     .form-group
       = f.label :password, class: "form-label"
-      = f.password_field :password, placeholder: "password", class: "form-input"
+      = f.password_field :password, placeholder: "your sophisticated password", class: "form-input"
 
     - if devise_mapping.rememberable?
       .form-group
@@ -15,4 +17,4 @@ main.page
         = f.label :remember_me
 
     .form-group.center
-      = f.button "Log in", class: "button"
+      = f.button raw("<i class='fa fa-check'></i> Log in"), class: "button"

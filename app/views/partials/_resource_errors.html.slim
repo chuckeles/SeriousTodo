@@ -1,4 +1,4 @@
 - if resource.errors.any?
-  .flashes.danger
+  .flashes.danger data-remove-on-click="true"
     - resource.errors.full_messages.each do |message|
       p = message

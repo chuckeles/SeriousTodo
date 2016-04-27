@@ -1,9 +1,9 @@
 - if flash[:danger]
-  .flashes.danger
+  .flashes.danger data-remove-on-click="true"
     p = flash[:danger]
 - if flash[:alert]
-  .flashes.alert
+  .flashes.alert data-remove-on-click="true"
     p = flash[:alert]
 - if flash[:notice]
-  .flashes.notice
+  .flashes.notice data-remove-on-click="true"
     p = flash[:notice]

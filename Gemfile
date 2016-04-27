@@ -2,20 +2,21 @@ source "https://rubygems.org"
 
 gem "rails"
 
-gem "slim-rails"
-gem "sass-rails"
-gem "coffee-rails"
-gem "uglifier"
-gem "normalize-rails"
 gem "autoprefixer-rails"
+gem "coffee-rails"
+gem "normalize-rails"
+gem "sass-rails"
+gem "slim-rails"
+gem "uglifier"
+gem "font-awesome-rails"
 
-gem "turbolinks"
-gem "jbuilder"
-
-gem "pg"
-gem "devise"
-gem "roadie-rails"
 gem "aes"
+gem "devise"
+gem "jbuilder"
+gem "pg"
+gem "redcarpet"
+gem "roadie-rails"
+gem "turbolinks"
 
 group :development do
   gem "web-console"

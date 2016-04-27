@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :todo_apps, dependent: :destroy
 
   before_save do
+    self.name.downcase!
     self.email.downcase!
   end
 

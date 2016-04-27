@@ -4,17 +4,17 @@ nav.menu-bar
       = link_to Rails.configuration.x.name, root_path, class: "menu-item"
     .menu-spacer
     li
-      = link_to "About", about_path, class: "menu-item"
+      = link_to raw("<i class='fa fa-info-circle'></i> About"), about_path, class: "menu-item"
 
     - if user_signed_in?
       li
-        = link_to "Tasks", tasks_path, class: "menu-item"
+        = link_to raw("<i class='fa fa-tasks'></i> Tasks"), tasks_path, class: "menu-item"
       li
-        = link_to "Profile", current_user, class: "menu-item"
+        = link_to raw("<i class='fa fa-user'></i> Profile"), current_user, class: "menu-item"
       li
-        = link_to "Log out", destroy_user_session_path, class: "menu-item"
+        = link_to raw("<i class='fa fa-sign-out'></i> Log out"), destroy_user_session_path, class: "menu-item"
     - else
       li
-        = link_to "Sign up", new_user_registration_path, class: "menu-item"
+        = link_to raw("<i class='fa fa-user-plus'></i> Sign up"), new_user_registration_path, class: "menu-item"
       li
-        = link_to "Log in", new_user_session_path, class: "menu-item"
+        = link_to raw("<i class='fa fa-sign-in'></i> Log in"), new_user_session_path, class: "menu-item"
