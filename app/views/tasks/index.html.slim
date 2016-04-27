@@ -1,8 +1,17 @@
 main
 
   section.page
-      p Here will be the pledged tasks...
+    h2 Pledged tasks
+    
+    p Here will be the pledged tasks...
 
   section.page
+    h2 Your to-do list tasks
+  
     - @items.each do |item|
       p = item[:content]
+  
+  section.page
+    h2 Want more?
+  
+    = link_to raw("<i class='fa fa-plug'></i> Connect more to-do apps"), todo_apps_connect_path, class: "button"
