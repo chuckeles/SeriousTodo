@@ -8,6 +8,7 @@ gem "normalize-rails"
 gem "sass-rails"
 gem "slim-rails"
 gem "uglifier"
+gem "font-awesome-rails"
 
 gem "aes"
 gem "devise"
