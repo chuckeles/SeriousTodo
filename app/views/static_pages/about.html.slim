@@ -1,7 +1,19 @@
 main.page
 
-  h1 About
+  markdown:
+    # About Serious Todo
 
-  p Serious Todo is an app that integrates with your existing to-do app.
-    (Currently only #{ link_to "Todoist", "https://todoist.com" } is supported, but others are coming.)
-    It allows you to pledge you money to complete a particular task. If you fail, I take your money.
+    Serious Todo is an app that integrates with your existing to-do app. (Currently only
+    [Todoist](https://todoist.com) is supported, but others are coming.) It allows you to
+    pledge you money to complete a particular task. If you fail, I take your money.
+    
+    ## Who's this for?
+    
+    This app is *not for everybody*. Serious Todo works only with your existing todo-app.
+    It will help you gain some much-needed motivation to complete your tasks.
+    
+    ## What are you waiting for?
+      
+    Take action now and get serious about your to-do list!
+  
+  = link_to "Get started!", new_user_registration_path, class: "button"
