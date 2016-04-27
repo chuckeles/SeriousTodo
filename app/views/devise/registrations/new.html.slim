@@ -2,6 +2,8 @@ main.page
 
   = render "partials/resource_errors"
 
+  h1 Sign up
+
   = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form" }  do |f|
     .form-group
       = f.label :name, class: "form-label"
