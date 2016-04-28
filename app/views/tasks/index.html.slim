@@ -1,15 +1,21 @@
 main
 
   section.page
-    h2 Pledged tasks
-    
-    p Here will be the pledged tasks...
-
-  section.page
     h2 Your to-do list tasks
   
-    - @items.each do |item|
-      p = item[:content]
+    table
+      - @items.each do |item|
+        tr
+          td = item[:content]
+          td
+            i.fa.fa-tasks
+            = item[:source]
+          - if item[:pledged]
+            td
+              i.fa.fa-check
+              | Pledged #{ item[:pledge_amount] }
+          - else
+            td = link_to raw("<i class='fa fa-credit-card'></i> Pledge")
   
   section.page
     h2 Want more?

@@ -48,7 +48,8 @@ class Todoist
     items = json_body["Items"].map do |item|
       {
         id: item["id"],
-        content: item["content"]
+        content: item["content"],
+        source: "Todoist"
       }
     end
     items.sort do |a, b|
