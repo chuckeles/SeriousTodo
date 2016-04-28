@@ -14,8 +14,12 @@ main
             td
               i.fa.fa-check
               | Pledged #{ item[:pledge_amount] }
-          - else
+          - elsif item[:due]
             td = link_to raw("<i class='fa fa-credit-card'></i> Pledge")
+          - else
+            td
+              i.fa.fa-ban
+              | No due date
   
   section.page
     h2 Want more?

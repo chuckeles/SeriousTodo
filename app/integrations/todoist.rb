@@ -49,6 +49,7 @@ class Todoist
       {
         id: item["id"],
         content: item["content"],
+        due: item["due_date_utc"] ? DateTime.parse(item["due_date_utc"]) : nil,
         source: "Todoist"
       }
     end
