@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action do
     if not Todoist.connected?(current_user)
-      flash[:alert] = "You have to connect a todo app first."
+      flash[:alert] = "You have to connect a to-do app first."
       redirect_to todo_apps_connect_path
     end
   end

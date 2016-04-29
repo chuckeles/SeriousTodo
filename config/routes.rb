@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get "users/:name",       to: "users#show", as: :user
-  get "todo-apps/connect", to: "todo_apps#connect"
-  get "todo-apps/todoist", to: "todo_apps#todoist"
-  get "tasks",             to: "tasks#index"
+  get "users/:name",                  to: "users#show", as: :user
+  get "todo-apps/connect",            to: "todo_apps#connect"
+  get "todo-apps/connect/todoist",    to: "todo_apps#connect_todoist"
+  get "todo-apps/disconnect",         to: "todo_apps#disconnect"
+  get "todo-apps/disconnect/todoist", to: "todo_apps#disconnect_todoist"
+  get "tasks",                        to: "tasks#index"
 
 end

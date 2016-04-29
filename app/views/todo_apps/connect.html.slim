@@ -1,4 +1,7 @@
 main.page
 
-  p Please connect to your Todoist account to use #{ Rails.configuration.x.name }.
+  p Connect a to-do app. I'll grab your tasks for you.
   = link_to raw(@button_text), @todoist_url, class: @button_class
+  
+  markdown:
+    You can also [disconnect an app](#{ todo_apps_disconnect_path }).

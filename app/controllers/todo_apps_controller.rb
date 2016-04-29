@@ -19,11 +19,28 @@ class TodoAppsController < ApplicationController
     end
   end
 
-  def todoist
+  def connect_todoist
     state = params[:state]
     code = params[:code]
 
     Todoist.authorize(current_user, state, code, flash)
+    redirect_to todo_apps_connect_path
+  end
+
+  def disconnect
+    if Todoist.connected?(current_user)
+      @button_text = "<i class='fa fa-trash'></i> Disconnect Todoist"
+      @button_class = "button"
+    else
+      @button_text = "<i class='fa fa-ban'></i> Todoist not connected"
+      @button_class = "button disabled"
+    end
+  end
+
+  def disconnect_todoist
+    TodoApp.delete_all
+    flash[:notice] = "Todoist disconnected."
+
     redirect_to todo_apps_connect_path
   end
 
