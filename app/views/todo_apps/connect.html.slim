@@ -1,4 +1,4 @@
 main.page
 
   p Please connect to your Todoist account to use #{ Rails.configuration.x.name }.
-  = link_to @button_text, @todoist_url, class: @button_class
+  = link_to raw(@button_text), @todoist_url, class: @button_class

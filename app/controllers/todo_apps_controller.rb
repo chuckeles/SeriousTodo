@@ -10,11 +10,11 @@ class TodoAppsController < ApplicationController
   def connect
     if Todoist.connected?(current_user)
       @todoist_url = ""
-      @button_text = "Todoist connected"
+      @button_text = "<i class='fa fa-check'></i> Todoist connected"
       @button_class = "button disabled"
     else
       @todoist_url = Todoist.authorize_url
-      @button_text = "Connect Todoist"
+      @button_text = "<i class='fa fa-plug'></i> Connect Todoist"
       @button_class = "button"
     end
   end
