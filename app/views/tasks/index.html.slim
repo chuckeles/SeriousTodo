@@ -15,7 +15,7 @@ main
               i.fa.fa-check
               | Pledged #{ item[:pledge_amount] }
           - elsif item[:due]
-            td = link_to raw("<i class='fa fa-credit-card'></i> Pledge")
+            td = link_to raw("<i class='fa fa-credit-card'></i> Pledge"), task_path(item[:id])
           - else
             td
               i.fa.fa-ban

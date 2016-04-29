@@ -45,9 +45,9 @@ class Todoist
     if items
       items = JSON.parse(items).map do |item|
         {
-          id: item["id"],
+          id: item["id"].to_i,
           content: item["content"],
-          due: item["due"],
+          due: item["due"] ? DateTime.parse(item["due"]) : nil,
           source: "Todoist"
         }
       end
@@ -65,7 +65,7 @@ class Todoist
 
       items = json_body["Items"].map do |item|
         {
-          id: item["id"],
+          id: item["id"].to_i,
           content: item["content"],
           due: item["due_date_utc"] ? DateTime.parse(item["due_date_utc"]) : nil,
           source: "Todoist"
@@ -79,6 +79,17 @@ class Todoist
     end
 
     items
+  end
+
+  # TODO: Refactor
+  def self.item(id, user, flash)
+    result = nil
+    items(user, flash).each do |item|
+      if item[:id] == id
+        result = item
+      end
+    end
+    result
   end
 
 end

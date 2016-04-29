@@ -21,4 +21,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    @item = Todoist.item(params[:id].to_i, current_user, flash)
+
+    redirect_to tasks_path unless @item
+  end
+
 end
