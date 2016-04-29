@@ -145,6 +145,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
     redcarpet (3.3.4)
+    redis (3.3.0)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     roadie (3.1.1)
@@ -248,6 +249,7 @@ DEPENDENCIES
   rails_12factor
   rake
   redcarpet
+  redis
   roadie-rails
   rspec-rails
   sass-rails

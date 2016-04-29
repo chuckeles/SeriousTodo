@@ -1,7 +1,7 @@
 require "net/http"
 require "json"
 require "aes"
-require_relative "../integrations/todoist"
+require_relative "../utilities/todoist"
 
 class TasksController < ApplicationController
 

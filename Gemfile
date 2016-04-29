@@ -15,6 +15,7 @@ gem "devise"
 gem "jbuilder"
 gem "pg"
 gem "redcarpet"
+gem "redis"
 gem "roadie-rails"
 gem "turbolinks"
 

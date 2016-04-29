@@ -1,18 +1,18 @@
-require "json"
-
 class Cache
+
+  @@redis = nil
 
   def self.set(key, value, expire = 3600)
     make_redis
 
-    @@redis.set(key, value.to_json)
+    @@redis.set(key, value)
     @@redis.expire(key, expire)
   end
 
   def self.get(key)
     make_redis
 
-    JSON.parse(@@redis.get(key))
+    @@redis.get(key)
   end
 
   def self.make_redis
