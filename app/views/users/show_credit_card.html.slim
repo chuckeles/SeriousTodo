@@ -1,0 +1,34 @@
+main.page
+
+  h1 Add credit card
+  
+  p You can add your credit card here. This allows you to pledge on a task.
+  
+  = form_tag users_credit_card_path
+    .form-group
+      = label_tag "number", "Credit card number", class: "form-label"
+      = text_field_tag "number", nil, placeholder: "the long number of your credit card",
+        autofocus: true, class: "form-input", data: { stripe: "number" }
+      
+    .form-group
+      = label_tag "exp_month", "Expiration month", class: "form-label"
+      = number_field_tag "exp_month", Date.today.month, placeholder: "the month your credit card expires",
+        min: 1, max: 12, class: "form-input", data: { stripe: "exp_month" }
+      
+    .form-group
+      = label_tag "exp_year", "Expiration year", class: "form-label"
+      = number_field_tag "exp_year", Date.today.year, placeholder: "the year your credit card expires",
+        min: Date.today.year, class: "form-input", data: { stripe: "exp_year" }
+      
+    .form-group
+      = label_tag "cvc", "CVC", class: "form-label"
+      = number_field_tag "cvc", nil, placeholder: "the secret 3-digit number on the back",
+        min: 0, max: 999, class: "form-input", data: { stripe: "cvc" }
+      
+    .form-group
+      = label_tag "zip", "ZIP / Postal code", class: "form-label"
+      = text_field_tag "zip", nil, placeholder: "only used for security checks",
+        class: "form-input", data: { stripe: "address_zip" }
+        
+    .form-group.center
+      = button_tag raw("<i class='fa fa-plus'></i> Submit"), class: "button"
