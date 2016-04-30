@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   end
 
   def create_credit_card
+    token = params[:token]
+    p token
+
     redirect_to users_credit_card_path
   end
 
