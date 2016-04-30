@@ -1,3 +1,5 @@
+require "stripe"
+
 class UsersController < ApplicationController
 
   def show
@@ -5,12 +7,17 @@ class UsersController < ApplicationController
   end
 
   def show_credit_card
+    authenticate_user!
   end
 
   def create_credit_card
+    authenticate_user!
     token = params[:token]
-    p token
 
+    customer = Stripe::Customer.create(email: current_user.email, source: token)
+    current_user.customer_id = customer.id
+
+    flash[:notice] = "Successfully added the credit card."
     redirect_to users_credit_card_path
   end
 
