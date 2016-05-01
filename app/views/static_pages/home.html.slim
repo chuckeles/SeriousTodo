@@ -3,4 +3,5 @@
 main.page
   h1 Get serious about your to-do list.
   
-  = link_to "Get started now!", new_user_registration_path, class: "button"
+  - unless user_signed_in?
+    = link_to raw("<i class='fa fa-arrow-right'></i> Get started now!"), new_user_registration_path, class: "button"

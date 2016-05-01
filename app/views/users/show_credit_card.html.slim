@@ -1,0 +1,44 @@
+main.page
+
+  h1 Credit card
+  
+  - if current_user.customer_id
+  
+    p You have already added a credit card. Your Stripe customer id is #{ current_user.customer_id }.
+    
+    = link_to raw("<i class='fa fa-trash'></i> Delete credit card"), users_credit_card_delete_path, class: "button"
+  
+  - else
+  
+    p You can add your credit card here. This allows you to pledge on a task.
+    
+    = form_tag users_credit_card_path
+      = hidden_field_tag "token"
+      
+      label.form-group
+        p.form-label Credit card number
+        = text_field_tag nil, nil, placeholder: "the long number of your credit card",
+          autofocus: true, class: "form-input", data: { stripe: "number" }
+        
+      label.form-group
+        p.form-label Expiration month
+        = number_field_tag nil, Date.today.month, placeholder: "the month your credit card expires",
+          min: 1, max: 12, class: "form-input", data: { stripe: "exp_month" }
+        
+      label.form-group
+        p.form-label Expiration year
+        = number_field_tag nil, Date.today.year, placeholder: "the year your credit card expires",
+          min: Date.today.year, class: "form-input", data: { stripe: "exp_year" }
+        
+      label.form-group
+        p.form-label CVC
+        = number_field_tag nil, nil, placeholder: "the secret 3-digit number on the back",
+          min: 0, max: 999, class: "form-input", data: { stripe: "cvc" }
+        
+      label.form-group
+        p.form-label ZIP / Postal code
+        = text_field_tag nil, nil, placeholder: "only used for security checks",
+          class: "form-input", data: { stripe: "address_zip" }
+          
+      .form-group.center
+        = button_tag raw("<i class='fa fa-plus'></i> Submit"), class: "button"

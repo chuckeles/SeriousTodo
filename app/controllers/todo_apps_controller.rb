@@ -1,7 +1,7 @@
 require "net/http"
 require "json"
 require "aes"
-require_relative "../integrations/todoist"
+require_relative "../utilities/todoist"
 
 class TodoAppsController < ApplicationController
 
@@ -10,20 +10,37 @@ class TodoAppsController < ApplicationController
   def connect
     if Todoist.connected?(current_user)
       @todoist_url = ""
-      @button_text = "Todoist connected"
+      @button_text = "<i class='fa fa-check'></i> Todoist connected"
       @button_class = "button disabled"
     else
       @todoist_url = Todoist.authorize_url
-      @button_text = "Connect Todoist"
+      @button_text = "<i class='fa fa-plug'></i> Connect Todoist"
       @button_class = "button"
     end
   end
 
-  def todoist
+  def connect_todoist
     state = params[:state]
     code = params[:code]
 
     Todoist.authorize(current_user, state, code, flash)
+    redirect_to todo_apps_connect_path
+  end
+
+  def disconnect
+    if Todoist.connected?(current_user)
+      @button_text = "<i class='fa fa-trash'></i> Disconnect Todoist"
+      @button_class = "button"
+    else
+      @button_text = "<i class='fa fa-ban'></i> Todoist not connected"
+      @button_class = "button disabled"
+    end
+  end
+
+  def disconnect_todoist
+    TodoApp.delete_all
+    flash[:notice] = "Todoist disconnected."
+
     redirect_to todo_apps_connect_path
   end
 

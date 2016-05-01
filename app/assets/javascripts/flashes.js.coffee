@@ -1,7 +1,7 @@
 document.addEventListener "click", (e) ->
   tag = e.target
   while tag
-    if tag.dataset.removeOnClick
+    if tag.dataset and tag.dataset.removeOnClick
       tag.remove()
       break
 

@@ -1,0 +1,11 @@
+main.page
+
+  h1 Pledge on task
+  
+  markdown:
+    #{ @item[:content] }
+    
+    from <i class="fa fa-tasks"></i> #{ @item[:source] }
+    and <i class="fa fa-calendar"></i> due #{ @item[:due].strftime("%d. %m. %Y") }
+    
+  = link_to raw("<i class='fa fa-credit-card'></i> Do it"), "", class: "button"
