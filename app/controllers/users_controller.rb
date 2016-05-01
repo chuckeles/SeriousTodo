@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     customer = Stripe::Customer.create(email: current_user.email, source: token)
     current_user.customer_id = customer.id
+    current_user.save!
 
     flash[:notice] = "Successfully added the credit card."
     redirect_to users_credit_card_path
