@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "users/credit-card",            to: "users#show_credit_card"
   post "users/credit-card",           to: "users#create_credit_card"
+  get "users/credit-card/delete",     to: "users#delete_credit_card"
   get "users/:name",                  to: "users#show",                  as: :user
   get "todo-apps/connect",            to: "todo_apps#connect"
   get "todo-apps/connect/todoist",    to: "todo_apps#connect_todoist"

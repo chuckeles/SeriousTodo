@@ -15,10 +15,19 @@ class UsersController < ApplicationController
     token = params[:token]
 
     customer = Stripe::Customer.create(email: current_user.email, source: token)
-    current_user.customer_id = customer.id
-    current_user.save!
+    current_user.update_attribute(:customer_id, customer.id)
 
     flash[:notice] = "Successfully added the credit card."
+    redirect_to users_credit_card_path
+  end
+
+  def delete_credit_card
+    authenticate_user!
+
+    # TODO: Remove Stripe customer
+    current_user.update_attribute(:customer_id, nil)
+
+    flash[:notice] = "Deleted the credit card."
     redirect_to users_credit_card_path
   end
 
