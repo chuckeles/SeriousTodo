@@ -3,7 +3,7 @@ Stripe.setPublishableKey "<%= Rails.application.secrets.stripe_key %>"
 document.addEventListener "submit", (e) ->
   form = e.target
   
-  unless form.dataset or form.dataset.stripe
+  unless form.dataset and form.dataset.stripe
     return
 
   e.preventDefault()
