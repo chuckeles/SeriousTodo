@@ -1,9 +1,12 @@
 Stripe.setPublishableKey "<%= Rails.application.secrets.stripe_key %>"
 
 document.addEventListener "submit", (e) ->
-  e.preventDefault()
   form = e.target
+  
+  unless form.dataset or form.dataset.stripe
+    return
 
+  e.preventDefault()
   Stripe.card.createToken form, (status, response) ->
     if response.error
       console.error response.error.message # TODO: Display error in a flash
