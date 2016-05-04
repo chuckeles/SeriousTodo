@@ -12,7 +12,7 @@ main.page
   
     p You can add your credit card here. This allows you to pledge on a task.
     
-    = form_tag users_credit_card_path
+    = form_tag users_credit_card_path, data { stripe: "true" }
       = hidden_field_tag "token"
       
       label.form-group
