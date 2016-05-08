@@ -1,14 +1,5 @@
 RSpec.describe User do
 
-  subject(:valid_user) do
-    User.new(
-      name: "chuckeles",
-      email: "me@chuckeles.me",
-      password: "foobazzz123",
-      password_confirmation: "foobazzz123"
-    )
-  end
-
   context "with name, email and password" do
     it { is_expected.to be_valid }
   end
@@ -92,6 +83,15 @@ RSpec.describe User do
     end
 
     it { is_expected.to_not be_valid }
+  end
+
+  subject(:valid_user) do
+    User.new(
+      name: "chuckeles",
+      email: "me@chuckeles.me",
+      password: "foobazzz123",
+      password_confirmation: "foobazzz123"
+    )
   end
 
 end
