@@ -1,36 +1,51 @@
-RSpec.describe "Profile" do
+RSpec.fdescribe "Profile" do
 
-  before do
-    @user = User.new(name: "chuckeles", email: "me@me.me", password: "foobaaaz", password_confirmation: "foobaaaz")
-    @user.skip_confirmation!
-    @user.save!
+  context "when logged in" do
+    it "should be editable" do
+      log_in_as_user
 
-    @other_user = User.new(name: "pasto", email: "me2@me.me", password: "foobaaaz", password_confirmation: "foobaaaz")
-    @other_user.skip_confirmation!
-    @other_user.save!
+      visit user_path(user)
+      click_link "Edit"
+
+      fill_in_new_user_details
+      click_button "Save"
+
+      expect(User.find(user.id).name).to eq("yochuckeles")
+    end
   end
 
-  it "should be editable if it is the current logged in user" do
-    log_in_as_user
+  context "when not logged in" do
+    it "should not be editable" do
+      visit user_path(user)
 
-    visit user_path(@user)
-    click_link "Edit"
+      expect(page).to_not have_button("Edit")
+    end
+  end
 
-    fill_in "Name", with: "nochuckeles"
-    fill_in "Current password", with: @user.password
-    click_button "Save"
-
-    user = User.find(@user.id)
-    expect(user.name).to eq("nochuckeles")
+  let(:user) do
+    user = User.new(
+      name: "chuckeles",
+      email: "me@me.me",
+      password: "foobaaaz123",
+      password_confirmation: "foobaaaz123"
+    )
+    user.skip_confirmation!
+    user.save!
+    user
   end
 
   def log_in_as_user
     visit new_user_session_path
 
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: @user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
 
     click_button "Log in"
+  end
+
+  def fill_in_new_user_details
+    fill_in "Name", with: "yochuckeles"
+    fill_in "Current password", with: user.password
   end
 
 end
