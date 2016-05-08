@@ -1,4 +1,4 @@
-RSpec.fdescribe "Profile" do
+RSpec.describe "Profile" do
 
   context "when logged in" do
     it "should be editable" do
