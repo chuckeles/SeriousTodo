@@ -29,9 +29,11 @@ class TodoAppsController < ApplicationController
 
   def disconnect
     if Todoist.connected?(current_user)
+      @button_url = todo_apps_disconnect_todoist_path
       @button_text = "<i class='fa fa-trash'></i> Disconnect Todoist"
       @button_class = "button"
     else
+      @button_url = ""
       @button_text = "<i class='fa fa-ban'></i> Todoist not connected"
       @button_class = "button disabled"
     end
