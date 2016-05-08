@@ -1,4 +1,4 @@
-RSpec.fdescribe User do
+RSpec.describe User do
 
   subject(:valid_user) do
     User.new(
