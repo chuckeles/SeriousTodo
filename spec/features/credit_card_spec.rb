@@ -1,4 +1,4 @@
-RSpec.fdescribe "Credit Card" do
+RSpec.describe "Credit Card" do
 
   context "with existing credit card" do
     before do
