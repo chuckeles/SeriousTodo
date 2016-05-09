@@ -18,7 +18,7 @@ main.page
       label.form-group
         p.form-label Credit card number
         = text_field_tag nil, nil, placeholder: "the long number of your credit card",
-          autofocus: true, class: "form-input", data: { stripe: "number" }
+          autofocus: true, class: "form-input", data: { stripe: "number" }, id: "card_number"
         
       label.form-group
         p.form-label Expiration month
@@ -33,7 +33,7 @@ main.page
       label.form-group
         p.form-label CVC
         = number_field_tag nil, nil, placeholder: "the secret 3-digit number on the back",
-          min: 0, max: 999, class: "form-input", data: { stripe: "cvc" }
+          min: 0, max: 999, class: "form-input", data: { stripe: "cvc" }, id: "card_cvc"
         
       label.form-group
         p.form-label ZIP / Postal code
