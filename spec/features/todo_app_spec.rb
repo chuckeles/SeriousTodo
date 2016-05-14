@@ -1,4 +1,4 @@
-RSpec.fdescribe "Todo App" do
+RSpec.describe "Todo App" do
 
   context "when no todo-app is connected" do
     before do

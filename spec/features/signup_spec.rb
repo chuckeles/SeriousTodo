@@ -6,6 +6,13 @@ RSpec.describe "Signup" do
 
       expect { click_button "Sign up" }.to change{ User.count }.by(1)
     end
+
+    it "sends a confirmation email" do
+      fill_in_user_details
+
+      click_button "Sign up"
+      expect(page).to have_content("confirmation link has been sent to your email")
+    end
   end
 
   context "when the form is not correct" do
@@ -15,7 +22,7 @@ RSpec.describe "Signup" do
       expect(page).to have_css(".flashes.danger")
     end
   end
-  
+
   before do
     visit new_user_registration_path
   end
