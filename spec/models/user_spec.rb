@@ -1,89 +1,97 @@
 RSpec.describe User do
 
-  before do
-    @user = User.new(name: "chuckeles", email: "me@chuckeles.me", password: "foobazzz", password_confirmation: "foobazzz")
+  context "with name, email and password" do
+    it { is_expected.to be_valid }
   end
 
-  it "is valid with a name and an email" do
-    expect(@user).to be_valid
+  context "without a name" do
+    subject do
+      user = valid_user.dup
+      user.name = ""
+      user
+    end
+
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid without a name" do
-    @user.name = ""
+  context "with an existing name" do
+    subject do
+      valid_user.save!
+      valid_user.dup
+    end
 
-    expect(@user).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid with an existing name" do
-    @user.save
-    user2 = @user.dup
+  context "with an invalid name" do
+    subject do
+      user = valid_user.dup
+      user.name = "not coo$$"
+      user
+    end
 
-    expect(user2).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid with an invalid name" do
-    @user.name = "yo_this_is_not_coo$"
+  context "without an email" do
+    subject do
+      user = valid_user.dup
+      user.email = ""
+      user
+    end
 
-    expect(@user).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid without an email" do
-    @user.email = ""
+  context "with an invalid email" do
+    subject do
+      user = valid_user.dup
+      user.email = "me.me"
+      user
+    end
 
-    expect(@user).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid with an invalid email" do
-    user1 = @user.dup
-    user2 = @user.dup
-    user3 = @user.dup
-    user4 = @user.dup
+  context "with an existing email" do
+    subject do
+      valid_user.save!
 
-    user1.email = "me"
-    user2.email = "me.me"
-    user3.email = "me@me"
-    user4.email = "me@me..me"
+      user = valid_user.dup
+      user.email = "ME@chuckeles.ME"
+      user
+    end
 
-    expect(user1).to_not be_valid
-    expect(user2).to_not be_valid
-    expect(user3).to_not be_valid
-    expect(user4).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid with an existing email" do
-    user1 = @user.dup
-    user2 = @user.dup
-    user3 = @user.dup
+  context "without a password" do
+    subject do
+      user = valid_user.dup
+      user.password = user.password_confirmation = ""
+      user
+    end
 
-    user1.email = "me@chuckeles.ME"
-    user2.email = "me@chuckeles.me"
-    user3.email = "ME@chuckeles.me"
-
-    @user.save
-
-    expect(user1).to_not be_valid
-    expect(user2).to_not be_valid
-    expect(user3).to_not be_valid
+    it { is_expected.to_not be_valid }
   end
 
-  it "has email downcased in the database" do
-    @user.email = "ME@chuckeles.ME"
+  context "is invalid with a short password" do
+    subject do
+      user = valid_user.dup
+      user.password = user.password_confirmation = "short"
+      user
+    end
 
-    @user.save
-
-    expect(@user.reload.email).to eq("me@chuckeles.me")
+    it { is_expected.to_not be_valid }
   end
 
-  it "is invalid without a password" do
-    @user.password = "   "
-
-    expect(@user).to_not be_valid
-  end
-
-  it "is invalid with a short password" do
-    @user.password = @user.password_confirmation = "foo"
-
-    expect(@user).to_not be_valid
+  subject(:valid_user) do
+    User.new(
+      name: "chuckeles",
+      email: "me@chuckeles.me",
+      password: "foobazzz123",
+      password_confirmation: "foobazzz123"
+    )
   end
 
 end

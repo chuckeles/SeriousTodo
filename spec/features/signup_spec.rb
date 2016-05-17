@@ -1,23 +1,37 @@
 RSpec.describe "Signup" do
 
-  it "creates new user when all required fields are filled" do
-    visit new_user_registration_path
+  context "when all required fields are filled" do
+    it "creates a user" do
+      fill_in_user_details
 
-    fill_in "Name", with: "chuckeles"
-    fill_in "Email", with: "me@chuckeles.me"
-    fill_in "Password", with: "foobaaaz"
-    fill_in "Confirm password", with: "foobaaaz"
-    click_button "Sign up"
+      expect { click_button "Sign up" }.to change{ User.count }.by(1)
+    end
 
-    expect(User.count).to eq(1)
+    it "sends a confirmation email" do
+      fill_in_user_details
+
+      click_button "Sign up"
+      expect(page).to have_content("confirmation link has been sent to your email")
+    end
   end
 
-  it "displays an error when the form is not correct" do
+  context "when the form is not correct" do
+    it "displays an error" do
+      click_button "Sign up"
+
+      expect(page).to have_css(".flashes.danger")
+    end
+  end
+
+  before do
     visit new_user_registration_path
+  end
 
-    click_button "Sign up"
-
-    expect(page).to have_css(".flashes.danger")
+  def fill_in_user_details
+    fill_in "Name", with: "chuckeles"
+    fill_in "Email", with: "me@chuckeles.me"
+    fill_in "Password", with: "foobaaaz123"
+    fill_in "Confirm password", with: "foobaaaz123"
   end
 
 end

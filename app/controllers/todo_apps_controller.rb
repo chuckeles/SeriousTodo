@@ -7,6 +7,10 @@ class TodoAppsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    redirect_to todo_apps_connect_path
+  end
+
   def connect
     if Todoist.connected?(current_user)
       @todoist_url = ""
