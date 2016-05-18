@@ -1,4 +1,6 @@
 class PledgesController < ApplicationController
+  
+  before_action :authenticate_user!
 
   def create
     pledge = Pledge.new(task_id: params[:id], amount: params[:amount])

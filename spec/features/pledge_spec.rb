@@ -1,4 +1,4 @@
-RSpec.fdescribe "Pledge" do
+RSpec.describe "Pledge" do
 
   context "when not logged in" do
     it "redirects to login" do

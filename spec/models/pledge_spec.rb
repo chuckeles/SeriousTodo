@@ -27,7 +27,7 @@ RSpec.describe Pledge do
   context "with a negative amount" do
     subject do
       pledge = valid_pledge.dup
-      pledge.amount = -10
+      pledge.amount = -10.0
       pledge
     end
 
