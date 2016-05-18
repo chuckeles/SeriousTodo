@@ -8,4 +8,11 @@ main.page
     from <i class="fa fa-tasks"></i> #{ @item[:source] }
     and <i class="fa fa-calendar"></i> due #{ @item[:due].strftime("%d. %m. %Y") }
     
-  = link_to raw("<i class='fa fa-credit-card'></i> Do it"), "", class: "button"
+  = form_tag pledge_path(params[:id])
+  
+    .form-group
+      = label_tag :amount, nil, class: "form-label"
+      = number_field_tag :amount, 6, placeholder: "how much you want to pledge", min: 2, class: "form-input"
+    
+    .form-group.center
+      = button_tag raw("<i class='fa fa-credit-card'></i> Do it"), class: "button"

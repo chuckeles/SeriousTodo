@@ -19,6 +19,13 @@ class TasksController < ApplicationController
     if not @items
       redirect_to todo_apps_connect_path
     end
+
+    @items = @items.map do |item|
+      pledge = Pledge.find_by(task_id: item[:id])
+      item[:pledged] = !pledge.nil?
+      item[:pledge_amount] = pledge.nil? ? 0 : pledge.amount
+      item
+    end
   end
 
   def show

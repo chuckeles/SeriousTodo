@@ -13,7 +13,7 @@ main
           - if item[:pledged]
             td
               i.fa.fa-check
-              | Pledged #{ item[:pledge_amount] }
+              | Pledged #{ item[:pledge_amount] } &euro;
           - elsif item[:due]
             td = link_to raw("<i class='fa fa-credit-card'></i> Pledge"), task_path(item[:id])
           - else

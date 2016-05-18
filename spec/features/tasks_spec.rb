@@ -68,7 +68,7 @@ RSpec.describe "Tasks" do
 
   def stub_todo_apps
     stub_request(:post, "https://todoist.com/API/v6/sync")
-      .to_return(body: '{ "Items": [{ "id": 123, "content": "Important tasks" }] }')
+      .to_return(body: '{ "Items": [{ "id": 123, "content": "Important task" }] }')
   end
 
 end

@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   get "todo-apps/disconnect/todoist", to: "todo_apps#disconnect_todoist"
   get "tasks",                        to: "tasks#index"
   get "tasks/:id",                    to: "tasks#show",                  as: :task
+  post "pledges/:id",                 to: "pledges#create",              as: :pledge
 
 end
