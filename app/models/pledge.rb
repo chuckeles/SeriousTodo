@@ -21,16 +21,12 @@ class Pledge < ActiveRecord::Base
         end
       end
 
-      p tasks
       if not tasks[pledge.user_id][pledge.task_id]
-        # Pledge.delete(pledge.id)
         success_count += 1
-        p "Pledge #{pledge.id} deleted, the task is complete."
-      elsif tasks[pledges.user_id][pledge.task_id][:due] < DateTime.now
+        Pledge.delete(pledge.id)
+      elsif tasks[pledge.user_id][pledge.task_id][:due] < DateTime.now
         fail_count += 1
-        p "Task #{tasks[pledge.user_id][pledge.task_id][:content]} overdue! Charge the user!!!"
-      else
-        p "Pledge for task #{tasks[pledge.user_id][pledge.task_id][:content]} is still valid."
+        Pledge.delete(pledge.id)
       end
     end
 
