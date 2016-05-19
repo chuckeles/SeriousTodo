@@ -1,3 +1,4 @@
+require "stripe"
 require_relative "../utilities/todoist"
 
 class Pledge < ActiveRecord::Base
@@ -13,9 +14,10 @@ class Pledge < ActiveRecord::Base
 
     tasks = {}
     all.each do |pledge|
+      user = User.find(pledge.user_id)
       unless tasks[pledge.user_id]
         tasks[pledge.user_id] = {}
-        items = Todoist.items(User.find(pledge.user_id), {})
+        items = Todoist.items(user, {})
         items.each do |item|
           tasks[pledge.user_id][item[:id]] = item
         end
@@ -26,6 +28,14 @@ class Pledge < ActiveRecord::Base
         Pledge.delete(pledge.id)
       elsif tasks[pledge.user_id][pledge.task_id][:due] < DateTime.now
         fail_count += 1
+
+        # TODO: Send a notification email
+        Stripe::Charge.create(
+          customer: user.customer_id,
+          amount: pledge.amount * 100,
+          currency: "eur"
+        )
+
         Pledge.delete(pledge.id)
       end
     end
