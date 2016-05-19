@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     format: { with: /\A[a-z0-9_-]+\z/i }
 
   has_many :todo_apps, dependent: :destroy
+  has_many :pledges, dependent: :destroy
 
   before_save do
     self.name.downcase!

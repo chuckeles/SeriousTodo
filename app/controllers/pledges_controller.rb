@@ -1,9 +1,9 @@
 class PledgesController < ApplicationController
-  
+
   before_action :authenticate_user!
 
   def create
-    pledge = Pledge.new(task_id: params[:id], amount: params[:amount])
+    pledge = current_user.pledges.new(task_id: params[:id], amount: params[:amount])
     if (pledge.save)
       flash[:notice] = "Successfully pledged on the task."
       redirect_to tasks_path
