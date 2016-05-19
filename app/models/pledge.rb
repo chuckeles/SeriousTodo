@@ -32,7 +32,7 @@ class Pledge < ActiveRecord::Base
         # TODO: Send a notification email
         Stripe::Charge.create(
           customer: user.customer_id,
-          amount: pledge.amount * 100,
+          amount: (pledge.amount * 100).round,
           currency: "eur"
         )
 
