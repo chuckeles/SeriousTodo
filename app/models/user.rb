@@ -12,6 +12,22 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
+  after_save do
+    Analytics.identify(
+      user_id: id,
+      traits: {
+        name: name,
+        email: email,
+        registered_at: created_at,
+        confirmed_at: confirmed_at
+    })
+
+    Analytics.track(
+      user_id: id,
+      event: "Register"
+    )
+  end
+
   def to_param
     name
   end
@@ -22,9 +38,21 @@ class User < ActiveRecord::Base
       traits: {
         name: name,
         email: email,
-        registered_at: registered_at,
+        registered_at: created_at,
         confirmed_at: confirmed_at
     })
+
+    Analytics.track(
+      user_id: id,
+      event: "Log In"
+    )
+  end
+
+  def after_confirmation
+    Analytics.track(
+      user_id: id,
+      event: "Confirm Email"
+    )
   end
 
 end
