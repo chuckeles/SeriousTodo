@@ -16,4 +16,15 @@ class User < ActiveRecord::Base
     name
   end
 
+  def after_database_authentication
+    Analytics.identify(
+      user_id: id,
+      traits: {
+        name: name,
+        email: email,
+        registered_at: registered_at,
+        confirmed_at: confirmed_at
+    })
+  end
+
 end

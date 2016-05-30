@@ -11,6 +11,7 @@ gem "slim-rails"
 gem "uglifier"
 
 gem "aes"
+gem "analytics-ruby"
 gem "devise"
 gem "jbuilder"
 gem "pg"
