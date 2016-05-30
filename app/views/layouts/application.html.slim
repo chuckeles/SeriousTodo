@@ -21,3 +21,12 @@ html
     = render "partials/flashes"
     
     == yield
+    
+    - if current_user
+      javascript:
+        analytics.identify("#{ current_user.id }", {
+          name: "#{ current_user.name }",
+          email: "#{ current_user.email }",
+          registered_at: "#{ current_user.created_at }",
+          confirmed_at: "#{ current_user.confirmed_at }"
+        });
