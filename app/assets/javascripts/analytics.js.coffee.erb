@@ -1,0 +1,67 @@
+( ->
+
+  analytics = window.analytics = window.analytics or []
+
+  if analytics.initialize
+    return
+
+  if analytics.invoked
+    console.error "Segment snippet included twice!"
+    return
+
+  analytics.invoked = true
+
+  analytics.methods = [
+    "trackSubmit",
+    "trackClick",
+    "trackLink",
+    "trackForm",
+    "pageview",
+    "identify",
+    "reset",
+    "group",
+    "track",
+    "ready",
+    "alias",
+    "page",
+    "once",
+    "off",
+    "on"
+  ]
+
+  analytics.factory = (method) ->
+    ->
+      args = Array.prototype.slice.call arguments
+      args.unshift method
+      analytics.push args
+      analytics
+
+  for method in analytics.methods
+    do (method) ->
+      analytics[method] = analytics.factory method
+
+  analytics.load = (key) ->
+    script = document.createElement "script"
+    script.async = true
+    script.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js"
+
+    first = document.getElementsByTagName("script")[0]
+    first.parentNode.insertBefore script, first
+
+  analytics.SNIPPET_VERSION = "3.1.0"
+
+  analytics.load "<%= Rails.application.secrets.segment_key %>"
+
+  analytics.referrer = null
+
+  document.addEventListener "turbolinks:click", ->
+    analytics.referrer = location.href
+
+  document.addEventListener "turbolinks:load", ->
+    analytics.page location.pathname.slice(1) or "home", {
+      url: location.href,
+      path: location.pathname,
+      referrer: analytics.referrer or document.referrer
+    }
+
+)()
