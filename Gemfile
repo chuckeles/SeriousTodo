@@ -19,6 +19,7 @@ gem "redis"
 gem "roadie-rails"
 gem "stripe"
 gem "turbolinks"
+gem "sitemap_generator"
 
 group :development do
   gem "web-console"

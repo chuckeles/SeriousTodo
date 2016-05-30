@@ -1,1 +1,1 @@
-# all robots are welcome
+Sitemap: https://serious-todo.herokuapp.com/sitemap.xml.gz
