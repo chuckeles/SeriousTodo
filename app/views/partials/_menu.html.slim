@@ -1,21 +1,36 @@
 nav.menu-bar
   ul.menu
     li
-      = link_to Rails.configuration.x.name, root_path, class: "menu-item"
+      a.menu-item href="#{root_path}"
+        i.fa.fa-home
+        span.menu-text
+          = Rails.configuration.x.name
       
     .menu-spacer
 
     - if user_signed_in?
       li
-        = link_to raw("<i class='fa fa-tasks'></i> Tasks"), tasks_path, class: "menu-item"
+        a.menu-item href="#{tasks_path}"
+          i.fa.fa-tasks
+          span.menu-text Tasks
       li
-        = link_to raw("<i class='fa fa-user'></i> Profile"), current_user, class: "menu-item"
+        a.menu-item href="#{user_path current_user}"
+          i.fa.fa-user
+          span.menu-text Profile
       li
-        = link_to raw("<i class='fa fa-sign-out'></i> Log out"), destroy_user_session_path, class: "menu-item"
+        a.menu-item href="#{destroy_user_session_path}"
+          i.fa.fa-sign-out
+          span.menu-text Log out
     - else
       li
-        = link_to raw("<i class='fa fa-info-circle'></i> About"), about_path, class: "menu-item"
+        a.menu-item href="#{about_path}"
+          i.fa.fa-info-circle
+          span.menu-text About
       li
-        = link_to raw("<i class='fa fa-user-plus'></i> Sign up"), new_user_registration_path, class: "menu-item"
+        a.menu-item href="#{new_user_registration_path}"
+          i.fa.fa-user-plus
+          span.menu-text Sign up
       li
-        = link_to raw("<i class='fa fa-sign-in'></i> Log in"), new_user_session_path, class: "menu-item"
+        a.menu-item href="#{new_user_session_path}"
+          i.fa.fa-sign-in
+          span.menu-text Log in

@@ -2,7 +2,11 @@
 
 .menu-bar
   background-color: $primary
+  font-size:        1.5em
   margin-bottom:    0
+
+  @media (min-width: 450px)
+    font-size: inherit
 
 .menu
   display:         flex
@@ -17,3 +21,9 @@
 
 .menu-spacer
   flex-grow: 1
+
+.menu-text
+  display: none
+
+  @media (min-width: 450px)
+    display: inline
