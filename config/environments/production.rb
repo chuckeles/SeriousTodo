@@ -2,9 +2,11 @@ Rails.application.configure do
 
   config.cache_classes = true
   config.eager_load = true
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
-  config.serve_static_files = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.serve_static_files = true
+  config.static_cache_control = "public, max-age=2592000"
+  config.assets.compress = true
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
   config.assets.compile = false
