@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
     Analytics.track(
       user_id: id,
-      event: "Register"
+      event: "Registered"
     )
   end
 
@@ -44,14 +44,14 @@ class User < ActiveRecord::Base
 
     Analytics.track(
       user_id: id,
-      event: "Log In"
+      event: "Logged In"
     )
   end
 
   def after_confirmation
     Analytics.track(
       user_id: id,
-      event: "Confirm Email"
+      event: "Confirmed Email"
     )
   end
 
