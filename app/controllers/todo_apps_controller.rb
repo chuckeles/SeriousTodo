@@ -27,7 +27,12 @@ class TodoAppsController < ApplicationController
     state = params[:state]
     code = params[:code]
 
-    Todoist.authorize(current_user, state, code, flash)
+    if Todoist.authorize(current_user, state, code, flash)
+      Analytics.track(
+        user_id: current_user.id,
+        event: "Connected Todoist"
+      )
+    end
     redirect_to todo_apps_connect_path
   end
 
@@ -46,6 +51,11 @@ class TodoAppsController < ApplicationController
   def disconnect_todoist
     TodoApp.delete_all
     flash[:notice] = "Todoist disconnected."
+
+    Analytics.track(
+      user_id: current_user.id,
+      event: "Disconnected Todoist"
+    )
 
     redirect_to todo_apps_connect_path
   end

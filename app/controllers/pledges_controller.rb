@@ -7,6 +7,14 @@ class PledgesController < ApplicationController
     if (pledge.save)
       flash[:notice] = "Successfully pledged on the task."
       redirect_to tasks_path
+
+      Analytics.track(
+        user_id: current_user.id,
+        event: "Pledged",
+        properties: {
+          amount: pledge.amount
+        }
+      )
     else
       flash[:danger] = pledge.errors.full_messages.first
       redirect_to task_path(params[:id])

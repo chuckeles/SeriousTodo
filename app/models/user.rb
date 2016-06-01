@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
-  after_save do
+  after_create do
     Analytics.identify(
       user_id: id,
       traits: {
@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     Analytics.track(
       user_id: id,
       event: "Registered"
+    )
+  end
+
+  after_update do
+    Analytics.track(
+      user_id: id,
+      event: "Updated Profile"
     )
   end
 

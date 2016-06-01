@@ -23,6 +23,7 @@ class Todoist
   def self.authorize(user, state, code, flash)
     if state != Rails.application.secrets.state
       flash[:danger] = "State does not match! Please try again."
+      false
     else
       url = URI(@@token_url)
       result = Net::HTTP.post_form(url, client_id: Rails.application.secrets.todoist_id, client_secret: Rails.application.secrets.todoist_secret, code: code)
@@ -30,9 +31,11 @@ class Todoist
 
       if json_body["error"]
         flash[:danger] = "Error getting the token! Please try again."
+        false
       else
         user.todo_apps.create(token: AES.encrypt(json_body["access_token"], Rails.application.secrets.secret_key_base))
         flash[:notice] = "Todoist successfully connected."
+        true
       end
     end
   end
