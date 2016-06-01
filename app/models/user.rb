@@ -29,10 +29,29 @@ class User < ActiveRecord::Base
   end
 
   after_update do
-    Analytics.track(
-      user_id: id,
-      event: "Updated Profile"
-    )
+    updated = []
+    for key, _ in changes do
+      updated.push key.to_s unless key == :customer_id
+    end
+
+    unless updated.empty?
+      Analytics.track(
+        user_id: id,
+        event: "Updated Profile",
+        properties: {
+          updated: updated
+        }
+      )
+
+      Analytics.identify(
+        user_id: id,
+        traits: {
+          name: name,
+          email: email,
+          registered_at: created_at,
+          confirmed_at: confirmed_at
+      })
+    end
   end
 
   def to_param
