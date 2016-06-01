@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
-  after_save do
+  after_create do
     Analytics.identify(
       user_id: id,
       traits: {
@@ -24,8 +24,34 @@ class User < ActiveRecord::Base
 
     Analytics.track(
       user_id: id,
-      event: "Register"
+      event: "Registered"
     )
+  end
+
+  after_update do
+    updated = []
+    for key, _ in changes do
+      updated.push key.to_s unless key == :customer_id
+    end
+
+    unless updated.empty?
+      Analytics.track(
+        user_id: id,
+        event: "Updated Profile",
+        properties: {
+          updated: updated
+        }
+      )
+
+      Analytics.identify(
+        user_id: id,
+        traits: {
+          name: name,
+          email: email,
+          registered_at: created_at,
+          confirmed_at: confirmed_at
+      })
+    end
   end
 
   def to_param
@@ -44,14 +70,14 @@ class User < ActiveRecord::Base
 
     Analytics.track(
       user_id: id,
-      event: "Log In"
+      event: "Logged In"
     )
   end
 
   def after_confirmation
     Analytics.track(
       user_id: id,
-      event: "Confirm Email"
+      event: "Confirmed Email"
     )
   end
 

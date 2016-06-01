@@ -23,6 +23,11 @@ class UsersController < ApplicationController
 
     flash[:notice] = "Successfully added the credit card."
     redirect_to users_credit_card_path
+
+    Analytics.track(
+      user_id: current_user.id,
+      event: "Added Credit Card"
+    )
   end
 
   def delete_credit_card
@@ -33,6 +38,11 @@ class UsersController < ApplicationController
 
     flash[:notice] = "Deleted the credit card."
     redirect_to users_credit_card_path
+
+    Analytics.track(
+      user_id: current_user.id,
+      event: "Deleted Credit Card"
+    )
   end
 
 end
