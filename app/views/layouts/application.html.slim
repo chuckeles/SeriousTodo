@@ -30,10 +30,10 @@ html
 
     = csrf_meta_tags
     = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Oswald"
-    = stylesheet_link_tag "application", "data-turbolinks-track" = "reload"
+    = stylesheet_link_tag "application", "data-turbolinks-track" => "reload"
     
     script src="https://js.stripe.com/v2"
-    = javascript_include_tag "application", "data-turbolinks-track" = "reload"
+    = javascript_include_tag "application", "data-turbolinks-track" => "reload"
 
   body.container class="#{ yield :container_classes }"
 
